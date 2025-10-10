@@ -57,7 +57,7 @@ i {font-style:normal}
 @font-face {
   font-family: "RiaSans";
   src: url("/fonts/RiaSans-Regular.ttf") format("truetype");
-  font-weight: 700; /* Regular */
+  font-weight: 400; /* Regular */
   font-style: normal;
 }
 

@@ -57,9 +57,9 @@ export const theme = {
   fonts: {
     InterM0: fontGenerator("21px", "500", "20px"),
     InterM1: fontGenerator("17px", "500", "24px"),
-    InterM2: fontGenerator("15px", "800", "18px"),
-    InterM3: fontGenerator("13px", "800", "20px"),
-    InterM4: fontGenerator("11px", "800", "13px"),
+    InterM2: fontGenerator("15px", "500", "18px"),
+    InterM3: fontGenerator("13px", "500", "20px"),
+    InterM4: fontGenerator("11px", "500", "13px"),
 
     InterB0: fontGenerator("20px", "600", "20px"),
     InterB1: fontGenerator("16px", "600", "20px"),
