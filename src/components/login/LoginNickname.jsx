@@ -20,11 +20,13 @@ export const LoginNickname = () => {
           <S.LogoImg src={NickNameLogo} />
         </S.InputWrapper>
       </S.NameInputContainer>
-      <LoginBtn
-        onClick={handleHome}
-        text={"시작하기"}
-        disabled={!nickname.trim()}
-      />
+      <S.BtnContainer>
+        <LoginBtn
+          onClick={handleHome}
+          text={"시작하기"}
+          disabled={!nickname.trim()}
+        />
+      </S.BtnContainer>
     </S.NameWrapper>
   );
 };

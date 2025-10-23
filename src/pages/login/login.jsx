@@ -19,11 +19,13 @@ export const LoginPage = () => {
               <S.LogoImg src={FabQuest} />
               <S.LoginText>반도체 8대 공정 체험하기</S.LoginText>
             </S.TextWrapper>
-            <LoginBtn
-              onClick={() => setLogin(true)}
-              imgSrc={KakaoImg}
-              text={" 카카오로 시작하기"}
-            />
+            <S.BtnContainer>
+              <LoginBtn
+                onClick={() => setLogin(true)}
+                imgSrc={KakaoImg}
+                text={" 카카오로 시작하기"}
+              />
+            </S.BtnContainer>
           </S.LogoWrapper>
         )}
       </S.BackGround>
