@@ -49,3 +49,7 @@ export const NameInput = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.purple100};
   background-color: ${({ theme }) => theme.colors.black};
 `;
+export const BtnContainer = styled.div`
+  display: flex;
+  width: 316px;
+`;

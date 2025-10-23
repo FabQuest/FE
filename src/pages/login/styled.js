@@ -3,34 +3,37 @@ import styled from "styled-components";
 export const BackGround = styled.div`
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(
-    167deg,
-    #000 10%,
-    #4e64b4 35%,
-    #0037ff 50%,
-    #6385ff 70%,
-    #4e64b4 80%,
-    #000 90%
+
+  overflow: hidden;
+  background: radial-gradient(
+    circle at 50% 50%,
+    #6385ff 0%,
+    #4e64b4 20%,
+    #330a94 45%,
+    #000 80%
   );
   background-size: 200% 200%;
 
-  animation: flowLoop 25s linear infinite;
+  animation: moveCircle 15s ease-in-out infinite alternate;
 
-  @keyframes flowLoop {
+  @keyframes moveCircle {
     0% {
-      background-position: 45% 10%;
+      background-position: 30% 30%;
     }
     25% {
-      background-position: 55% 80%;
+      background-position: 70% 40%;
     }
     50% {
-      background-position: 50% 100%;
+      background-position: 50% 70%;
     }
     75% {
-      background-position: 52% 170%;
+      background-position: 60% 90%;
+    }
+    85% {
+      background-position: 20% 70%;
     }
     100% {
-      background-position: 45% 200%;
+      background-position: 40% 20%;
     }
   }
 `;
@@ -61,4 +64,8 @@ export const LoginText = styled.div`
   display: flex;
   ${({ theme }) => theme.fonts.InterM2};
   color: ${({ theme }) => theme.colors.purple100};
+`;
+export const BtnContainer = styled.div`
+  display: flex;
+  width: 316px;
 `;

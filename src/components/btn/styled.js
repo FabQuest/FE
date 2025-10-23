@@ -1,8 +1,8 @@
 import styled from "styled-components";
 export const LoginBtn = styled.div`
   display: flex;
-  width: 316px;
-  height: 60px;
+  width: 100%;
+  height: 55px;
   flex-direction: row;
   gap: 10px;
   justify-content: center;
