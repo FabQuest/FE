@@ -5,6 +5,9 @@ import { LoginPage } from "@pages/login/Login";
 import { HomePage } from "@pages/home/Home";
 import { TrainingPage } from "@pages/training/Training";
 import { MyPage } from "@pages/My/MyPage";
+import Step1Page from "@pages/detail/step1";
+import Step2Page from "@pages/detail/step2";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: "/mypage",
         element: <MyPage />,
+      },
+      {
+        path: "/detail/step1",
+        element: <Step1Page />,
+      },
+      {
+        path: "/detail/step2",
+        element: <Step2Page />,
       },
     ],
   },
