@@ -50,13 +50,10 @@ export const CutLine = styled.div`
   height: 0;
   top: ${({ $topPct }) => `${$topPct * 100}%`};
 
-  /* 시각적 라인 표현 */
   border-top: ${({ $isCut, theme }) =>
     $isCut
       ? `3px solid ${theme?.colors?.gray07 || "#111"}`
       : `3px dashed ${theme?.colors?.gray07 || "#111"}`};
-
-  /* 클릭 영역 확장 (터치 편의) */
   &::after {
     content: "";
     position: absolute;

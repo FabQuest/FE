@@ -3,43 +3,30 @@ import styled from "styled-components";
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  /* 브라우저/기기별 주소창 높이 이슈까지 포함 */
   min-height: 100dvh;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.white};
-  /* 전체 스크롤은 페이지 컨테이너에서 */
   overflow: hidden;
 `;
 
 export const Playground = styled.div`
-  /* 남은 영역을 꽉 채움 */
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  /* 내부 스크롤 (헤더/설명은 고정) */
   overflow: auto;
-
-  /* iOS 하단 안전영역 변수 */
   --safe-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
-
-  /* 상단 여백만 약간 */
   padding-top: 14px;
 //   background-color: orange;
 `;
 
-/* 이미지 컨테이너는 가운데 정렬 + 상대 위치(타깃 배치용) */
 export const ImageWrap = styled.div`
   position: relative;
   width: min(92vw, 560px);
-  /* 남은 공간에서 적절히 커지도록 */
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* 너무 커지지 않게 상한선 */
   max-height: 55vh;
 //   background-color: lightgray;
 `;
@@ -97,16 +84,9 @@ export const ChipFixed = styled(ChipBase)`
 
 export const ChipsRow = styled.div`
   margin-top: auto;
-
-  /* 정중앙 정렬 */
   display: flex;
   justify-content: center;
   gap: 14px;
-
-  /* 하단 안전영역 고려해 패딩 */
   padding: 16px 0 calc(var(--safe-bottom));
-
-  /* 배경을 살짝 두어 하단이 비어 보이지 않게(선택) */
-//    background: yellow;
    margin-bottom: 15vh;
 `;
