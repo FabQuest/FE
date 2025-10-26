@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./styled";
 
-// Import assets
 import light_off from "../../assets/light_off.png";
 import light_on from "../../assets/light_on.png";
 import mask1 from "../../assets/mask1.png";
@@ -15,7 +14,7 @@ const maskImages = {
   mask3: mask3,
 };
 
-const Step2Component = ({ selectedMask, onLightsAllOn }) => {
+const Step2Component = ({ selectedMask, onComplete }) => {
   const [lightsOn, setLightsOn] = useState([false, false, false, false]);
 
   const toggleLight = (index) => {
@@ -27,9 +26,10 @@ const Step2Component = ({ selectedMask, onLightsAllOn }) => {
   };
 
   useEffect(() => {
-    const allOn = lightsOn.every((light) => light);
-    onLightsAllOn(allOn);
-  }, [lightsOn, onLightsAllOn]);
+    if (lightsOn.every((light) => light)) {
+      onComplete();
+    }
+  }, [lightsOn, onComplete]);
 
   return (
     <S.Step2Container>
