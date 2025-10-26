@@ -10,7 +10,16 @@ export const Fragment = styled.div`
 `;
 
 export const DescriptionText = styled.p`
-  ${({ theme }) => theme.fonts.InterR0}; /* Smaller font than header's InterB1 */
+  ${({ theme }) => theme.fonts.InterR0}; 
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray01};
+  padding: 10px 20px; 
+  white-space: pre-line;
+  // margin-bottom: 20px;
+`;
+
+export const SubDescriptionText = styled.p`
+  ${({ theme }) => theme.fonts.InterR2}; 
   text-align: center;
   color: ${({ theme }) => theme.colors.gray01};
   padding: 10px 20px; 
