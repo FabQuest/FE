@@ -106,7 +106,7 @@ const Step2Page = () => {
         cancelText="나가기"
         confirmText="다음 단계"
         onCancel={() => { setOpenComplete(false); navigate(-1); }}
-        onConfirm={() => { setOpenComplete(false); navigate("/step3-photolithography"); }}
+        onConfirm={() => { setOpenComplete(false); navigate("/detail/step3"); }}
         disableBackdropClose
       />
     </S.PageContainer>

@@ -87,7 +87,7 @@ export const Step1Page = () => {
         }}
         onConfirm={() => {
           setOpenComplete(false);
-          navigate("/step2-oxidation"); 
+          navigate("/detail/step2");
         }}
         disableBackdropClose
         hideCancel={false}
