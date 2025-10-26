@@ -14,7 +14,7 @@ const maskImages = {
   mask3: mask3,
 };
 
-const Step2Component = ({ selectedMask, onComplete }) => {
+const Step2Component = ({ selectedMask, onLightsAllOn }) => {
   const [lightsOn, setLightsOn] = useState([false, false, false, false]);
 
   const toggleLight = (index) => {
@@ -27,9 +27,11 @@ const Step2Component = ({ selectedMask, onComplete }) => {
 
   useEffect(() => {
     if (lightsOn.every((light) => light)) {
-      onComplete();
+      onLightsAllOn(true);
+    } else {
+      onLightsAllOn(false);
     }
-  }, [lightsOn, onComplete]);
+  }, [lightsOn, onLightsAllOn]);
 
   return (
     <S.Step2Container>
