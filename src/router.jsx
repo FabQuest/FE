@@ -7,6 +7,7 @@ import { TrainingPage } from "@pages/training/Training";
 import { MyPage } from "@pages/My/MyPage";
 import Step1Page from "@pages/detail/step1";
 import Step2Page from "@pages/detail/step2";
+import Step3Page from "@pages/detail/step3";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/detail/step2",
         element: <Step2Page />,
+      },
+      {
+        path: "/detail/step3",
+        element: <Step3Page />,
       },
     ],
   },
