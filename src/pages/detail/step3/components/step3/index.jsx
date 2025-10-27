@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import * as S from './styled';
 
-// Import assets
 import cylinder from "../../assets/cylinder.png";
 import wafer2 from "../../assets/wafer2.png";
 import wafer3 from "../../assets/wafer3.png";
