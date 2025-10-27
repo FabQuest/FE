@@ -9,7 +9,6 @@ export const Grid = styled.div`
   width: 100%;
   max-width: 520px;
 
-  /* 마지막 카드는 가운데 정렬되도록 span 2 → 중앙 */
   & > *:last-child {
     grid-column: 1 / -1;
     justify-self: center;
