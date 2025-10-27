@@ -5,12 +5,8 @@ export const Stage = styled.div`
   height: 485px;
   aspect-ratio: 334 / 485;
   border-radius: 16px;
-  display: flex;
   overflow-y: auto;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
   scrollbar-width: none;
-  scroll-snap-type: y mandatory;
 `;
 export const StageInner = styled.div`
   position: relative;
@@ -53,15 +49,16 @@ export const ActiveRegion = styled.img`
     }
   }
 `;
-export const Character = styled.img`
+export const CharacterWrap = styled.div`
   position: absolute;
   left: ${({ $left }) => $left}%;
   top: ${({ $top }) => $top}%;
-  transform: translate(-50%, -87%);
-  width: 112px;
+  transform: translate(-50%, -50%);
   z-index: 2;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+`;
+export const Character = styled.img`
+  transform: translateY(-37%);
+  width: 112px;
 `;
 //explainCard
 
@@ -77,6 +74,19 @@ export const ExplainBox = styled.div`
   border-radius: 16px;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+
+  animation: slideUp 0.5s ease-out forwards;
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 export const ExplainStepWrapper = styled.div`
@@ -95,11 +105,12 @@ export const ExplainStep = styled.div`
 `;
 export const TrainBtn = styled.div`
   display: flex;
-  width: 288px;
+  width: ${({ $width }) => $width}px;
   height: 30px;
   padding: 7px 33px;
   border-radius: 8px;
   justify-content: center;
+  align-items: center;
   background: var(
     --button---gradation2,
     linear-gradient(94deg, #2fceff -1.45%, #803bff 45.47%, #7073ff 85.68%)
@@ -108,4 +119,38 @@ export const TrainBtn = styled.div`
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
   ${({ theme }) => theme.fonts.InterB3};
   color: ${({ theme }) => theme.colors.white};
+  border: 1px solid
+    ${({ $isMy, theme }) => ($isMy ? theme.colors.mint100 : "none")};
+  cursor: pointer;
+`;
+//progressStep
+export const TrainingBox = styled.div`
+  display: flex;
+  position: relative;
+  justify-self: flex-start;
+  z-index: 1;
+  flex-direction: column;
+  width: 334px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 0 31px 0;
+  border-radius: 16px;
+  border: 1px solid ${({ theme }) => theme.colors.gray03};
+  background: linear-gradient(
+      0deg,
+      rgba(124, 129, 255, 0.5) 0%,
+      rgba(124, 129, 255, 0.5) 100%
+    ),
+    linear-gradient(
+      94deg,
+      rgba(0, 0, 0, 0.5) -9.03%,
+      rgba(0, 55, 255, 0.5) 63.71%,
+      rgba(95, 129, 255, 0.5) 85.68%
+    ),
+    #0b0e2a;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  color: ${({ theme }) => theme.colors.white};
+  ${({ $isMypage, theme }) =>
+    $isMypage ? theme.fonts.InterB1 : theme.fonts.RiaSansB0};
 `;
