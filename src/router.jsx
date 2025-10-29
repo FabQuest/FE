@@ -8,6 +8,8 @@ import { MyPage } from "@pages/My/MyPage";
 import Step1Page from "@pages/detail/step1";
 import Step2Page from "@pages/detail/step2";
 import Step3Page from "@pages/detail/step3";
+import Step4Page from "@pages/detail/step4";
+import Step5Page from "@pages/detail/step5";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +48,14 @@ const router = createBrowserRouter([
         path: "/detail/step3",
         element: <Step3Page />,
       },
+      {
+        path: "/detail/step4",
+        element: <Step4Page />,
+      },
+      {
+        path: "/detail/step5",
+        element: <Step5Page />,
+      }
     ],
   },
 ]);
