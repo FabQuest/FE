@@ -39,7 +39,7 @@ export const Stage = styled.div`
 
   .board {
     position: relative;
-    transform-origin: top left; /* 좌상단 기준으로 scale */
+    transform-origin: top left;
     will-change: transform;
   }
 
@@ -52,13 +52,11 @@ export const Stage = styled.div`
     pointer-events: none;
   }
 
-  /* 슬롯: 원본 px 좌표계에서 중심 좌표 */
   .slot {
     position: absolute;
-    transform: translate(-50%, -50%); /* 중심 정렬 */
+    transform: translate(-50%, -50%);
   }
 
-  /* 조각/빈칸: 원본 크기 그대로. board에 의해 함께 scale됨 */
   .piece {
     position: relative;
     display: block;
@@ -100,7 +98,6 @@ export const Tray = styled.div`
     box-shadow: 0 2px 8px rgba(50, 67, 145, 0.07);
     transition: box-shadow 0.12s ease;
 
-    /* 드래그 오버레이 전용 */
     &.is-dragging {
       cursor: grabbing;
       box-shadow: 0 8px 24px rgba(92, 110, 248, 0.3);
