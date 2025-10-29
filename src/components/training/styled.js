@@ -21,6 +21,8 @@ export const Step = styled.img`
   transform: translate(-50%, -50%);
   width: 66px;
   height: 63px;
+  cursor: pointer;
+  z-index: 2;
 `;
 
 export const ActiveRegion = styled.img`
@@ -30,7 +32,7 @@ export const ActiveRegion = styled.img`
   transform: translate(-50%, -0%) scale(1);
   width: 60px;
   z-index: 1;
-
+  pointer-events: none;
   ${({ $visible }) =>
     $visible &&
     `
@@ -54,18 +56,20 @@ export const CharacterWrap = styled.div`
   left: ${({ $left }) => $left}%;
   top: ${({ $top }) => $top}%;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 5;
+  pointer-events: none;
 `;
 export const Character = styled.img`
   transform: translateY(-37%);
   width: 112px;
+  pointer-events: none;
 `;
 //explainCard
 
 export const ExplainBox = styled.div`
   display: flex;
   position: fixed;
-  z-index: 4;
+  z-index: 7;
   bottom: 5rem;
   padding: 1rem;
   gap: 13px;

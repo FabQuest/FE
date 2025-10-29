@@ -8,15 +8,23 @@ import { ExplainCard } from "@components/training/ExplainCard";
 import { ProgressStep } from "@components/training/ProgressStep";
 import Background from "@assets/images/TrainingBackground.png";
 export const TrainingPage = ({ stepex = 8 }) => {
-  const [selectedStep, setSelectedStep] = useState(stepex);
+  const [selectedStep, setSelectedStep] = useState({ id: stepex, nonce: 0 });
   const currentPos = useMemo(
     () => STEPS.find((s) => s.id === stepex) ?? STEPS[0],
     [stepex]
   );
   const currentExplain = useMemo(
-    () => EXPLAINS.find((s) => s.step === selectedStep) ?? EXPLAINS[0],
-    [selectedStep]
+    () => EXPLAINS.find((s) => s.step === selectedStep.id) ?? EXPLAINS[0],
+    [selectedStep.id, selectedStep.nonce]
   );
+
+  const handleStepClick = (id) => {
+    if (id === selectedStep.id) {
+      setSelectedStep((prev) => ({ id: prev.id, nonce: prev.nonce + 1 }));
+    } else {
+      setSelectedStep({ id, nonce: 0 });
+    }
+  };
   return (
     <S.Wrapper>
       <S.Background src={Background} />
@@ -30,13 +38,13 @@ export const TrainingPage = ({ stepex = 8 }) => {
         <TrainingMap
           currentStep={stepex}
           currentPos={currentPos}
-          onStepClick={setSelectedStep}
+          onStepClick={handleStepClick}
         />
 
         <ExplainCard
           title={currentExplain.explainName}
           text={currentExplain.explainText}
-          key={currentExplain.explainName}
+          key={`${currentExplain.explainName}-${selectedStep.nonce}`}
         />
       </S.Container>
       <Footer />
