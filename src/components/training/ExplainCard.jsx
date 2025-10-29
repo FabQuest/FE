@@ -1,5 +1,5 @@
 import * as S from "./styled";
-
+import { GradationBtn } from "./GradationBtn";
 export const ExplainCard = ({ title, text, onAction }) => {
   return (
     <S.ExplainBox>
@@ -7,7 +7,7 @@ export const ExplainCard = ({ title, text, onAction }) => {
         <S.ExplainStepName>{title}</S.ExplainStepName>
         <S.ExplainStep>{text}</S.ExplainStep>
       </S.ExplainStepWrapper>
-      <S.TrainBtn onClick={onAction}>체험하기</S.TrainBtn>
+      <GradationBtn onAction={onAction} text={"체험하기"} width={"288"} />
     </S.ExplainBox>
   );
 };

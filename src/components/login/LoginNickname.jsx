@@ -28,6 +28,7 @@ export const LoginNickname = () => {
           onClick={handleHome}
           text={"시작하기"}
           disabled={!nickname.trim()}
+          isGradation={true}
         />
       </S.BtnContainer>
     </S.NameWrapper>
