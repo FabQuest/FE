@@ -1,15 +1,36 @@
 import * as S from "./styled";
+import { useState, useEffect } from "react";
+export const QuizComp = ({ question, displayNo }) => {
+  const [answer, setAnswer] = useState(null);
+  if (!question) return null;
+  useEffect(() => {
+    setAnswer(null);
+  }, [question?.id]);
 
-export const QuizComp = () => {
+  const handleClick = (choice) => {
+    setAnswer(choice);
+  };
   return (
     <S.QuizWrapper>
-      <S.QuizQ>
-        Q1 : 웨이퍼 제조 단계에서는 실리콘 잉곳을 절단하고 연마하여 평탄한
-        기판을 만든다.
-      </S.QuizQ>
+      <S.QuizQBox>
+        <S.QuizNum>Q{displayNo}.</S.QuizNum>
+        <S.QuizQ>{question.Question}</S.QuizQ>
+      </S.QuizQBox>
       <S.AnswerWrapper>
-        <S.AnswerBtn>O</S.AnswerBtn>
-        <S.AnswerBtn>X</S.AnswerBtn>
+        <S.AnswerBtn
+          $active={answer === "O"}
+          $type="O"
+          onClick={() => handleClick("O")}
+        >
+          O
+        </S.AnswerBtn>
+        <S.AnswerBtn
+          $active={answer === "X"}
+          $type="X"
+          onClick={() => handleClick("X")}
+        >
+          X
+        </S.AnswerBtn>
       </S.AnswerWrapper>
     </S.QuizWrapper>
   );

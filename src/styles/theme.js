@@ -1,8 +1,11 @@
 const fontGenerator = (
+  fontFamily = "Inter",
   fontSize = "0.9375rem",
   fontWeight = "normal",
   lineHeight = "normal"
 ) => ({
+  "font-family": fontFamily,
+
   "font-size": fontSize,
   "font-weight": fontWeight,
   "line-height": lineHeight,
@@ -55,33 +58,33 @@ export const theme = {
   },
 
   fonts: {
-    InterS0: fontGenerator("36px", "700", "20px"),
+    InterS0: fontGenerator("Inter", "36px", "700", "20px"),
 
-    InterM0: fontGenerator("21px", "500", "20px"),
-    InterM1: fontGenerator("17px", "500", "24px"),
-    InterM2: fontGenerator("15px", "500", "18px"),
-    InterM3: fontGenerator("13px", "500", "20px"),
-    InterM4: fontGenerator("11px", "500", "13px"),
+    InterM0: fontGenerator("Inter", "21px", "500", "20px"),
+    InterM1: fontGenerator("Inter", "17px", "500", "24px"),
+    InterM2: fontGenerator("Inter", "15px", "500", "18px"),
+    InterM3: fontGenerator("Inter", "13px", "500", "20px"),
+    InterM4: fontGenerator("Inter", "11px", "500", "13px"),
 
-    InterB0: fontGenerator("20px", "600", "20px"),
-    InterB1: fontGenerator("16px", "600", "20px"),
-    InterB2: fontGenerator("14px", "600", "24px"),
-    InterB3: fontGenerator("12px", "600", "20px"),
-    InterB4: fontGenerator("8px", "600", "20px"),
+    InterB0: fontGenerator("Inter", "20px", "600", "20px"),
+    InterB1: fontGenerator("Inter", "16px", "600", "20px"),
+    InterB2: fontGenerator("Inter", "14px", "600", "24px"),
+    InterB3: fontGenerator("Inter", "12px", "600", "20px"),
+    InterB4: fontGenerator("Inter", "8px", "600", "20px"),
 
-    InterR0: fontGenerator("15px", "400", "18px"),
-    InterR1: fontGenerator("13px", "400", "22px"),
-    InterR2: fontGenerator("11px", "400", "16px"),
-    InterR3: fontGenerator("11px", "400", "20px"),
-    InterR4: fontGenerator("10px", "400", "20px"),
-    InterR5: fontGenerator("8px", "400", "20px"),
-    InterR6: fontGenerator("8px", "400", "10px"),
+    InterR0: fontGenerator("Inter", "15px", "400", "18px"),
+    InterR1: fontGenerator("Inter", "13px", "400", "22px"),
+    InterR2: fontGenerator("Inter", "11px", "400", "16px"),
+    InterR3: fontGenerator("Inter", "11px", "400", "20px"),
+    InterR4: fontGenerator("Inter", "10px", "400", "20px"),
+    InterR5: fontGenerator("Inter", "8px", "400", "20px"),
+    InterR6: fontGenerator("Inter", "8px", "400", "10px"),
 
-    RiaSansB1: fontGenerator("23px", "700", "36px"),
-    RiaSansB0: fontGenerator("23px", "700", "20px"),
-    RiaSansB2: fontGenerator("17px", "700", "20px"),
+    RiaSansB1: fontGenerator("RiaSans", "23px", "700", "36px"),
+    RiaSansB0: fontGenerator("RiaSans", "23px", "700", "20px"),
+    RiaSansB2: fontGenerator("RiaSans", "17px", "700", "20px"),
 
-    RiaSansR0: fontGenerator("18px", "400", "26px"),
-    RiaSansR1: fontGenerator("16px", "400", "23px"),
+    RiaSansR0: fontGenerator("RiaSans", "18px", "400", "26px"),
+    RiaSansR1: fontGenerator("RiaSans", "16px", "400", "23px"),
   },
 };
