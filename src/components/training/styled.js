@@ -111,7 +111,7 @@ export const TrainBtn = styled.div`
   display: flex;
   width: ${({ $width }) => $width}px;
   height: 30px;
-  padding: 7px 33px;
+  padding: 20px 33px;
   border-radius: 8px;
   justify-content: center;
   align-items: center;

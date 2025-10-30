@@ -55,6 +55,8 @@ export const theme = {
   },
 
   fonts: {
+    InterS0: fontGenerator("36px", "700", "20px"),
+
     InterM0: fontGenerator("21px", "500", "20px"),
     InterM1: fontGenerator("17px", "500", "24px"),
     InterM2: fontGenerator("15px", "500", "18px"),
@@ -75,8 +77,8 @@ export const theme = {
     InterR5: fontGenerator("8px", "400", "20px"),
     InterR6: fontGenerator("8px", "400", "10px"),
 
-    RiaSansB0: fontGenerator("23px", "700", "20px"),
     RiaSansB1: fontGenerator("23px", "700", "36px"),
+    RiaSansB0: fontGenerator("23px", "700", "20px"),
     RiaSansB2: fontGenerator("17px", "700", "20px"),
 
     RiaSansR0: fontGenerator("18px", "400", "26px"),

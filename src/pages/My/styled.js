@@ -25,9 +25,6 @@ export const Container = styled.div`
   height: 100%;
   gap: 25px;
   z-index: 1;
-  /* @media (max-height: 680px) {
-    gap: 5px;
-  } */
 `;
 export const MyIcon = styled.img`
   display: flex;
