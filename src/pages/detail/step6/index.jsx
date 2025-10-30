@@ -43,7 +43,7 @@ const Step6Page = () => {
     <S.PageContainer>
       <CommonHeader title="6단계: 금속 배선" />
       <CommonDescription
-        text={"배선 상자에 있는 배선 조각을 적절한 위치에 드래그 하여 배선을 완성해 봅시다."}
+        text={"배선 상자에 있는 배선 조각을 적절한 위치에 \n드래그 하여 배선을 완성해 봅시다."}
       />
 
       <DndContext
