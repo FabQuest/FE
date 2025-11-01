@@ -130,7 +130,7 @@ export const WireImage = styled.img`
 `;
 
 export const CompleteCard = styled.div`
-  width: min(680px, 80vw);
+  width: min(90%, 400px);
   margin: 12px auto 24px;
   padding: 28px 24px;
   border-radius: 16px;
@@ -173,7 +173,7 @@ export const SemiconductorWrap = styled.div`
 `;
 
 export const SemiconductorImg = styled.img`
-  width: min(720px, 92vw);
+  width: min(400px, 90%);
   height: auto;
   display: block;
   filter: drop-shadow(0 12px 28px rgba(0,0,0,0.1));
@@ -257,13 +257,13 @@ export const PrimaryButton = styled.button`
 `;
 
 export const ModalImage1 = styled.img`
-  max-width: 80vw;
+  max-width: 300px;
   height: auto;
   margin-bottom: 12px;
 `;
 
 export const ModalImage2 = styled.img`
-  max-width: 80vw;
+  max-width: 300px;
   height: auto;
   margin-bottom: 12px;
 `;

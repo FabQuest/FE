@@ -45,7 +45,7 @@ export const ClickImage = styled.img`
   width: 40px;
   height: 40px;
   animation: ${moveUpDown} 1s ease-in-out infinite;
-  pointer-events: none; /* So it doesn't interfere with the cylinder click */
+  pointer-events: none; 
 `;
 
 export const WaferImage = styled.img`

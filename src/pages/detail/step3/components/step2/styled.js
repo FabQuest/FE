@@ -20,7 +20,7 @@ export const LightContainer = styled.div`
 `;
 
 export const LightImage = styled.img`
-  width: 20vw;
+  width: 80px;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
@@ -31,12 +31,12 @@ export const LightImage = styled.img`
 `;
 
 export const MaskImage = styled.img`
-  max-width: 80vw;
+  max-width: 300px;
   height: auto;
-  margin-bottom: 20px; /* Spacing between mask and wafer */
+  margin-bottom: 20px;
 `;
 
 export const WaferImage = styled.img`
-  max-width: 80vw;
+  max-width: 310px;
   height: auto;
 `;

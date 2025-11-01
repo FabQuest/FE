@@ -52,8 +52,8 @@ export const ImagesWrap = styled.div`
   }
 
   .pellicle {
-    width: auto;
-    height: var(--ionH);
+    width: 260px;
+    height: auto;
     object-fit: contain;
     margin-bottom: 12px;
     will-change: transform, opacity;
@@ -67,9 +67,9 @@ export const ImagesWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4vw;
+    gap: 15px;
     height: var(--ionH);  
-    width: 100%;
+    width: 260px;
     opacity: 0; 
   }
   .arrow-row.enter {
@@ -80,7 +80,7 @@ export const ImagesWrap = styled.div`
   }
   .arrow-row .arrow {
     height: 100%;
-    width: auto;
+    width: 30px;
     object-fit: contain;
     flex: 0 0 auto;
     transition: transform 0.15s ease; 
@@ -88,7 +88,7 @@ export const ImagesWrap = styled.div`
 
   .waferStack {
     position: relative;
-    width: 80%;
+    width: 300px;
     max-width: 420px;
     aspect-ratio: 7 / 3;       
   }

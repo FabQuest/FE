@@ -22,7 +22,7 @@ export const Playground = styled.div`
 
 export const ImageWrap = styled.div`
   position: relative;
-  width: min(92vw, 560px);
+  width: min(90%, 400px);
   flex: 1;
   display: flex;
   align-items: center;
@@ -63,7 +63,7 @@ export const TargetLabel = styled.div`
 `;
 
 export const ChipBase = styled.div`
-  min-width: clamp(110px, 28vw, 160px);
+  width: min(110px, 160px);
   height: clamp(40px, 6.2vw, 52px);
   padding: 0 14px;
   border-radius: 12px;
