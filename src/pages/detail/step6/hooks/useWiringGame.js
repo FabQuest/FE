@@ -1,13 +1,10 @@
 import { useState, useMemo, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { TARGETS } from "../constants/constants";
 
 import bulb_off from "../assets/bulb_off.png";
 import bulb_on from "../assets/bulb_on.png";
 
 export const useWiringGame = () => {
-  const navigate = useNavigate();
-
   const [placements, setPlacements] = useState({});
   const [activeId, setActiveId] = useState(null);
   const [trayHeights, setTrayHeights] = useState({});
@@ -43,10 +40,6 @@ export const useWiringGame = () => {
   const handleDragCancel = () => setActiveId(null);
 
   const handleModalClose = () => setShowModal(false);
-  const handleModalConfirm = () => {
-    setShowModal(false);
-    navigate("/detail/step7");
-  };
 
   const activePiece = useMemo(() => {
     if (!activeId) return null;
@@ -66,6 +59,5 @@ export const useWiringGame = () => {
     handleDragEnd,
     handleDragCancel,
     handleModalClose,
-    handleModalConfirm,
   };
 };

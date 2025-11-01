@@ -6,19 +6,10 @@ const bulbPop = keyframes`
   100% { transform: scale(1); }
 `;
 
-export const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100dvh;
-  width: 100%;
-  background: ${({ theme }) => theme.colors.white};
-  overflow: hidden;
-`;
-
 export const BulbWrap = styled.div`
   display: grid;
   place-items: center;
-  margin: 10px 0 6px;
+  margin: 7vh 0 6px;
 
   img {
     width: 64px;

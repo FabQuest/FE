@@ -8,14 +8,13 @@ import {
   useSensors,
   closestCenter,
 } from "@dnd-kit/core";
-import CommonHeader from "@components/common/Header/Header";
-import CommonDescription from "@components/common/Description/Description";
-import Modal from "@components/common/Modal/Modal";
 import * as S from "./styled";
-
 import { useWiringGame } from "./hooks/useWiringGame";
 import GameBoard from "./components/GameBoard";
 import PieceTray from "./components/PieceTray";
+import StepLayout from "@components/layout/StepLayout/StepLayout";
+import { STEP_CONTENT } from "@constants/stepContent";
+import StepCompletionModal from "@components/common/Modal/StepCompletionModal";
 
 const Step6Page = () => {
   const {
@@ -31,7 +30,6 @@ const Step6Page = () => {
     handleDragEnd,
     handleDragCancel,
     handleModalClose,
-    handleModalConfirm,
   } = useWiringGame();
 
   const sensors = useSensors(
@@ -39,13 +37,23 @@ const Step6Page = () => {
     useSensor(TouchSensor, { activationConstraint: { delay: 80, tolerance: 8 } })
   );
 
-  return (
-    <S.PageContainer>
-      <CommonHeader title="6단계: 금속 배선" />
-      <CommonDescription
-        text={"배선 상자에 있는 배선 조각을 적절한 위치에 \n드래그 하여 배선을 완성해 봅시다."}
-      />
+  const content = STEP_CONTENT[6];
 
+  const modalProps = {
+    open: showModal,
+    onClose: handleModalClose,
+    stepNumber: 6,
+    modalContent: content.modal,
+  };
+
+  return (
+    <StepLayout
+      title={content.title}
+      description={content.description}
+      helpText={content.helpText}
+      ModalComponent={StepCompletionModal}
+      modalProps={modalProps}
+    >
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
@@ -77,17 +85,7 @@ const Step6Page = () => {
           ) : null}
         </DragOverlay>
       </DndContext>
-
-      <Modal
-        open={showModal}
-        onClose={handleModalClose}
-        onConfirm={handleModalConfirm}
-        title="금속 배선 단계 완료!"
-        description="다음 단계인 EDS로 넘어가시겠습니까?"
-        confirmText="다음 단계"
-        cancelText="나가기"
-      />
-    </S.PageContainer>
+    </StepLayout>
   );
 };
 
