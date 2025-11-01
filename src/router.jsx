@@ -64,7 +64,6 @@ const router = createBrowserRouter([
         path: "/detail/step5",
         element: <Step5Page />,
       },
-
       {
         path: "/detail/step6",
         element: <Step6Page />,

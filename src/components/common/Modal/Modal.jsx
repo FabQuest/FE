@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import * as M from "./styled";
 
@@ -15,6 +16,8 @@ const Modal = ({
   disableBackdropClose = false,
   children,
 }) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "Escape" && onClose) onClose();
@@ -22,6 +25,12 @@ const Modal = ({
     if (open) document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [open, onClose]);
+
+  const handleCancel = () => {
+    navigate("/training");
+    if (onCancel) onCancel();
+    else if (onClose) onClose();
+  };
 
   if (!open) return null;
 
@@ -37,7 +46,7 @@ const Modal = ({
         {children}
         <M.Actions $hideCancel={hideCancel}>
           {!hideCancel && (
-            <M.OutlineButton onClick={onCancel || onClose}> 
+            <M.OutlineButton onClick={handleCancel}> 
               {cancelText}
             </M.OutlineButton>
           )}

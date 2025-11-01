@@ -28,7 +28,7 @@ export const useFixingProcess = () => {
   };
 
   const goToHome = () => {
-    navigate("/");
+    navigate("/training");
   };
 
   const goToQuiz = () => {

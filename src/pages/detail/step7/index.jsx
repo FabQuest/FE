@@ -19,6 +19,7 @@ export default function Step7Page() {
     onClickDie,
     onChoose,
     handleCheckModalConfirm,
+    handleModalClose,
     goNextStep,
   } = useDieGame();
 
@@ -49,7 +50,7 @@ export default function Step7Page() {
 
       <Modal
         open={nextModalOpen}
-        onClose={goNextStep}
+        onClose={handleModalClose}
         onConfirm={goNextStep}
         title="EDS 단계 완료!"
         description="다음 단계로 넘어가시겠습니까?"

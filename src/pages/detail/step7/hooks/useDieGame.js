@@ -61,6 +61,10 @@ export const useDieGame = () => {
     return { total, normalCount, defectCount, yieldPct };
   }, [allDies]);
 
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+
   const goNextStep = () => {
     setNextModalOpen(false);
     navigate("/detail/step8");
@@ -78,6 +82,7 @@ export const useDieGame = () => {
     onClickDie,
     onChoose,
     handleCheckModalConfirm,
+    handleModalClose,
     goNextStep,
   };
 };

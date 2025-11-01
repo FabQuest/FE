@@ -42,6 +42,7 @@ export const TrainingPage = ({ stepex = 8 }) => {
         />
 
         <ExplainCard
+          stepId={currentExplain.step}
           title={currentExplain.explainName}
           text={currentExplain.explainText}
           key={`${currentExplain.explainName}-${selectedStep.nonce}`}
