@@ -22,7 +22,7 @@ const allEdges = [
 
 const edgeKey = (a, b) => [a, b].sort().join("-");
 
-export const useGraphGame = (navigate) => {
+export const useGraphGame = () => {
   // --- 상태 --- 
   const [currentNode, setCurrentNode] = useState(null);
   const [visitedEdges, setVisitedEdges] = useState([]);
@@ -149,10 +149,6 @@ export const useGraphGame = (navigate) => {
   }, [isDragging, dragFrom, toSvgXY, nearestNode, failAndReset, visitedEdges, visitedNodes, currentNode]);
 
   const handleModalClose = useCallback(() => setShowModal(false), []);
-  const handleModalConfirm = useCallback(() => {
-    setShowModal(false);
-    navigate("/detail/step5");
-  }, [navigate]);
 
   return {
     nodePos,
@@ -175,6 +171,5 @@ export const useGraphGame = (navigate) => {
     handleSvgPointerMove,
     handleSvgPointerUp,
     handleModalClose,
-    handleModalConfirm,
   };
 };

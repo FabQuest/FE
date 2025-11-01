@@ -37,7 +37,7 @@ export const PageContainer = styled.div`
 export const ImagesWrap = styled.div`
   display: grid;
   place-items: center;
-  margin: 30px 0 8px;
+  margin: 8vh 0 8px;
   width: 100%;
   gap: 3vh;
   position: relative;

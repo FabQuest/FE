@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 
 const TARGET_MIN = 0.35;
 const TARGET_MAX = 0.65;
@@ -12,8 +11,6 @@ const angleToSlider = (deg) => (45 - deg) / 90;
 const ARROW_EXIT_MS = 800; 
 
 export const useDepositionGame = () => {
-  const navigate = useNavigate();
-
   const [phase, setPhase] = useState("measure");
   const [isRunning, setIsRunning] = useState(false);
   const [pos, setPos] = useState(0);
@@ -119,10 +116,6 @@ export const useDepositionGame = () => {
   }, []);
 
   const handleModalClose = useCallback(() => setShowModal(false), []);
-  const handleModalConfirm = useCallback(() => {
-    setShowModal(false);
-    navigate("/detail/step6");
-  }, [navigate]);
 
   return {
     phase,
@@ -145,6 +138,5 @@ export const useDepositionGame = () => {
     handleAngleChange,
     fire,
     handleModalClose,
-    handleModalConfirm,
   };
 };
