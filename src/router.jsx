@@ -12,6 +12,7 @@ import Step4Page from "@pages/detail/step4";
 import Step5Page from "@pages/detail/step5";
 import Step6Page from "@pages/detail/step6";
 import Step7Page from "@pages/detail/step7";
+import Step8Page from "@pages/detail/step8";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: "/detail/step7",
         element: <Step7Page />,
+      },
+      {
+        path: "/detail/step8",
+        element: <Step8Page />,
       }
     ],
   },
