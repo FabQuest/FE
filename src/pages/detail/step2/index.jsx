@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import CommonHeader from "@components/common/Header/Header";
 import CommonDescription from "@components/common/Description/Description";
@@ -6,50 +6,26 @@ import Modal from "@components/common/Modal/Modal";
 import Oxidation from "./assets/Oxidation.png";
 import * as S from "./styled";
 import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors, DragOverlay, closestCenter } from "@dnd-kit/core";
-import { TargetDroppable, ChipDraggable } from "./DndPieces"; 
-
-const TARGETS = [
-  { id: "rf", label: "RF 파워", xPct: 0.28, yPct: 0.30 },
-  { id: "o2", label: "O₂ 유량", xPct: 0.68, yPct: 0.30 },
-  { id: "press", label: "압력",  xPct: 0.50, yPct: 0.64 },
-];
-const OPTIONS = [
-  { id: "opt_rf", text: "400 W" },
-  { id: "opt_flow", text: "200 sccm" },
-  { id: "opt_press", text: "500 mTorr" },
-];
-const CORRECT = { opt_rf: "rf", opt_flow: "o2", opt_press: "press" };
+import { TargetDroppable, ChipDraggable } from "./DndPieces";
+import { useOxidationGame } from "./hooks/useOxidationGame";
+import { TARGETS, OPTIONS } from "./constants";
 
 const Step2Page = () => {
   const navigate = useNavigate();
-  const [openComplete, setOpenComplete] = useState(false);
-  const [placements, setPlacements] = useState({});
-  const [activeId, setActiveId] = useState(null);
-
-  const allMatched = useMemo(
-    () => TARGETS.every((t) => placements[t.id]),
-    [placements]
-  );
-  useEffect(() => { if (allMatched) setOpenComplete(true); }, [allMatched]);
+  const {
+    openComplete,
+    setOpenComplete,
+    placements,
+    activeId,
+    handleDragStart,
+    handleDragEnd,
+    handleDragCancel,
+  } = useOxidationGame();
 
   const sensors = useSensors(
     useSensor(MouseSensor, { activationConstraint: { distance: 4 } }),
     useSensor(TouchSensor, { pressDelay: 80, pressThreshold: 8 })
   );
-
-  const handleDragStart = (e) => setActiveId(e.active.id);
-  const handleDragEnd = (e) => {
-    const { active, over } = e;
-    setActiveId(null);
-    if (!over) return;
-    const optionId = active.id;
-    const targetId = over.id;
-    if (placements[targetId]) return;
-    if (CORRECT[optionId] === targetId) {
-      setPlacements((p) => ({ ...p, [targetId]: optionId }));
-    }
-  };
-  const handleDragCancel = () => setActiveId(null);
 
   return (
     <S.PageContainer>
@@ -105,7 +81,6 @@ const Step2Page = () => {
         description="다음 단계인 포토리소그래피로 넘어가시겠습니까?"
         cancelText="나가기"
         confirmText="다음 단계"
-        onCancel={() => { setOpenComplete(false); navigate(-1); }}
         onConfirm={() => { setOpenComplete(false); navigate("/detail/step3"); }}
         disableBackdropClose
       />
