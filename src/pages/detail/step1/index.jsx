@@ -1,45 +1,23 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import CommonHeader from "@components/common/Header/Header";
 import CommonDescription from "@components/common/Description/Description";
 import Modal from "@components/common/Modal/Modal";
-
 import * as S from "./styled";
-
+import { useWaferCut } from "./hooks/useWaferCut";
+import { LINE_POS } from "./constants";
 import ingot from "./assets/ingot.png";
-import track0 from "./assets/track0.png";
-import track1 from "./assets/track1.png";
-import track2 from "./assets/track2.png";
-import track3 from "./assets/track3.png";
-
-const tracks = [track0, track1, track2, track3];
-
-const LINE_POS = [0.20, 0.47, 0.74];
 
 export const Step1Page = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [isCutting, setIsCutting] = useState(false);
-  const [openComplete, setOpenComplete] = useState(false);
   const navigate = useNavigate();
-
-  const progressImage = useMemo(
-    () => tracks[Math.min(currentStep, 3)],
-    [currentStep]
-  );
-
-  useEffect(() => {
-    if (currentStep === 3) setOpenComplete(true);
-  }, [currentStep]);
-
-  const onClickLine = (idx) => {
-    if (idx !== currentStep || isCutting) return;
-    setIsCutting(true);
-    const CUT_DURATION = 700;
-    window.setTimeout(() => {
-      setCurrentStep((s) => Math.min(s + 1, 3));
-      setIsCutting(false);
-    }, CUT_DURATION);
-  };
+  const {
+    currentStep,
+    isCutting,
+    openComplete,
+    progressImage,
+    setOpenComplete,
+    onClickLine,
+  } = useWaferCut();
 
   return (
     <S.PageContainer>
@@ -81,10 +59,6 @@ export const Step1Page = () => {
         description="다음 단계인 산화공정으로 넘어가시겠습니까?"
         cancelText="나가기"
         confirmText="다음 단계"
-        onCancel={() => {
-          setOpenComplete(false);
-          navigate(-1); 
-        }}
         onConfirm={() => {
           setOpenComplete(false);
           navigate("/detail/step2");
