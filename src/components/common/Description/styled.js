@@ -66,28 +66,24 @@ export const HelpHeader = styled.div`
 `;
 
 export const HelpTitle = styled.h3`
-  margin: 0;
-  font-weight: 800;
-  font-size: 18px;
-  color: #111827;
+  ${({ theme }) => theme.fonts.InterB1};
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 export const CloseBtn = styled.button`
   border: none;
   background: transparent;
-  font-size: 22px;
-  line-height: 1;
   cursor: pointer;
-  color: #6b7280;
-
+  color: ${({ theme }) => theme.colors.gray01};
+  ${({ theme }) => theme.fonts.InterB0};
   &:hover { color: #111827; }
 `;
 
 export const HelpBody = styled.div`
   padding: 8px 18px 16px;
-  color: #4b5563;
-  line-height: 1.6;
-  white-space: pre-line; /* 줄바꿈 그대로 표시 */
+  color: ${({ theme }) => theme.colors.gray01};
+  ${({ theme }) => theme.fonts.InterR1};
+  white-space: pre-line;
 `;
 
 export const HelpFooter = styled.div`
@@ -102,8 +98,8 @@ export const PrimaryBtn = styled.button`
   border-radius: 10px;
   border: none;
   background: linear-gradient(135deg, #79c3ff 0%, #6d68ff 100%);
-  color: #fff;
-  font-weight: 700;
+  color: ${({ theme }) => theme.colors.white};
+  ${({ theme }) => theme.fonts.InterB3};
   cursor: pointer;
   box-shadow: 0 8px 18px rgba(109, 104, 255, 0.25);
 
