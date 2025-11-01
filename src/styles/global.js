@@ -45,6 +45,12 @@ i {font-style:normal}
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter_24pt-SemiBold.ttf") format("truetype");
+  font-weight: 700; /* SemiBold */
+  font-style: normal;
+}
 
 
 @font-face {

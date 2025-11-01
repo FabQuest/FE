@@ -7,7 +7,7 @@ import { GaugeBar } from "@components/GaugeBar/GaugeBar";
 import { QuizModal } from "@components/home/QuizModal";
 import HomeCharacter from "@assets/images/HomeCharacter.png";
 
-export const HomePage = ({ stepex = 6 }) => {
+export const HomePage = ({ stepex = 8 }) => {
   const [isQuizState, setIsQuizState] = useState(false);
   const isQuizAvailable = stepex > 7;
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export const HomePage = ({ stepex = 6 }) => {
     if (!isQuizAvailable) {
       setIsQuizState(true);
     } else {
-      navigate("/training");
+      navigate("/quiz");
     }
   };
   const closeQuizModal = () => setIsQuizState(false);
