@@ -1,10 +1,12 @@
 import React from "react";
-import CommonHeader from "@components/common/Header/Header";
 import Modal from "@components/common/Modal/Modal";
 import * as S from "./styled";
 import { useDieGame } from "./hooks/useDieGame";
 import WaferView from "./components/WaferView";
 import InspectView from "./components/InspectView";
+import StepLayout from "@components/layout/StepLayout/StepLayout";
+import { STEP_CONTENT } from "@constants/stepContent";
+import StepCompletionModal from "@components/common/Modal/StepCompletionModal";
 
 export default function Step7Page() {
   const {
@@ -20,13 +22,25 @@ export default function Step7Page() {
     onChoose,
     handleCheckModalConfirm,
     handleModalClose,
-    goNextStep,
   } = useDieGame();
 
-  return (
-    <S.PageContainer>
-      <CommonHeader title="7단계: EDS" />
+  const content = STEP_CONTENT[7];
 
+  const completionModalProps = {
+    open: nextModalOpen,
+    onClose: handleModalClose,
+    stepNumber: 7,
+    modalContent: content.modal,
+  };
+
+  return (
+    <StepLayout
+      title={content.title}
+      description={content.description(view)}
+      helpText={content.helpText}
+      ModalComponent={StepCompletionModal}
+      modalProps={completionModalProps}
+    >
       {view === "wafer" ? (
         <WaferView
           dies={dies}
@@ -47,16 +61,6 @@ export default function Step7Page() {
         confirmText={checkModalType === "correct" ? "나머지 확인하기" : "다시 시도하기"}
         hideCancel={true}
       />
-
-      <Modal
-        open={nextModalOpen}
-        onClose={handleModalClose}
-        onConfirm={goNextStep}
-        title="EDS 단계 완료!"
-        description="다음 단계로 넘어가시겠습니까?"
-        confirmText="다음 단계"
-        cancelText="나가기"
-      />
-    </S.PageContainer>
+    </StepLayout>
   );
 }

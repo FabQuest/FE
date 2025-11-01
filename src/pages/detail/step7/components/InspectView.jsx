@@ -1,5 +1,4 @@
 import React from "react";
-import CommonDescription from "@components/common/Description/Description";
 import * as S from "../styled";
 import nemo from "../assets/nemo.png";
 import { V_MIN, V_MAX, I_MIN, I_MAX } from "../constants";
@@ -7,7 +6,6 @@ import { V_MIN, V_MAX, I_MIN, I_MAX } from "../constants";
 export default function InspectView({ selectedDie, onChoose }) {
   return (
     <>
-      <CommonDescription text={"예시 범위를 참고하여\n불량 여부를 체크해봅시다."} />
       <S.InspectArea>
         <S.ChipPreview src={nemo} alt="chip" />
         <S.ReadingBox>

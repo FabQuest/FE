@@ -10,6 +10,7 @@ export const PageContainer = styled.div`
 `;
 
 export const WaferArea = styled.div`
+  margin-top: 7vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,6 +48,7 @@ export const DieImg = styled.img`
 `;
 
 export const InspectArea = styled.div`
+  margin-top: 4vh;
   display: flex;
   flex-direction: column;
   align-items: center;

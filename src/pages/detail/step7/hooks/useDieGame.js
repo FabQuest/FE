@@ -1,9 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { genRandomDies, isDefectDie } from "../utils/dieUtils";
-import { useNavigate } from "react-router-dom";
 
 export const useDieGame = () => {
-  const navigate = useNavigate();
   const [view, setView] = useState("wafer");
   const [dies, setDies] = useState([]);
   const [allDies, setAllDies] = useState([]);
@@ -62,12 +60,7 @@ export const useDieGame = () => {
   }, [allDies]);
 
   const handleModalClose = () => {
-    setShowModal(false);
-  };
-
-  const goNextStep = () => {
     setNextModalOpen(false);
-    navigate("/detail/step8");
   };
 
   return {
@@ -83,6 +76,5 @@ export const useDieGame = () => {
     onChoose,
     handleCheckModalConfirm,
     handleModalClose,
-    goNextStep,
   };
 };
