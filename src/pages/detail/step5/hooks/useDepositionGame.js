@@ -49,8 +49,12 @@ export const useDepositionGame = () => {
     if (phase !== "measure" || !isRunning) return;
     const tick = (ts) => {
       if (lastTsRef.current == null) lastTsRef.current = ts;
-      const dt = (ts - lastTsRef.current) / 1000;
+      let dt = (ts - lastTsRef.current) / 1000;
       lastTsRef.current = ts;
+      
+      if (dt > 0.1) {
+        dt = 0.016;
+      }
 
       setPos((prev) => {
         let next = prev + dir * SPEED * dt;
