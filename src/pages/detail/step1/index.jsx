@@ -1,15 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import CommonHeader from "@components/common/Header/Header";
-import CommonDescription from "@components/common/Description/Description";
-import Modal from "@components/common/Modal/Modal";
 import * as S from "./styled";
 import { useWaferCut } from "./hooks/useWaferCut";
 import { LINE_POS } from "./constants";
 import ingot from "./assets/ingot.png";
+import StepLayout from "@components/layout/StepLayout/StepLayout";
+import { STEP_CONTENT } from "@constants/stepContent";
+import StepCompletionModal from "@components/common/Modal/StepCompletionModal";
 
 export const Step1Page = () => {
-  const navigate = useNavigate();
   const {
     currentStep,
     isCutting,
@@ -19,11 +17,23 @@ export const Step1Page = () => {
     onClickLine,
   } = useWaferCut();
 
-  return (
-    <S.PageContainer>
-      <CommonHeader title="1단계: 웨이퍼 제조" />
-      <CommonDescription text={"절취선을 터치하여 \n실리콘 잉곳을 웨이퍼로 만들어보세요."} />
+  const content = STEP_CONTENT[1];
 
+  const modalProps = {
+    open: openComplete,
+    onClose: () => setOpenComplete(false),
+    stepNumber: 1,
+    modalContent: content.modal,
+  };
+
+  return (
+    <StepLayout
+      title={content.title}
+      description={content.description}
+      helpText={content.helpText}
+      ModalComponent={StepCompletionModal}
+      modalProps={modalProps}
+    >
       <S.Stage>
         <S.IngotWrap>
           <S.Ingot src={ingot} alt="실리콘 잉곳" />
@@ -51,22 +61,7 @@ export const Step1Page = () => {
       <S.TrackBar>
         <img src={progressImage} alt={`진행도 ${currentStep}/3`} />
       </S.TrackBar>
-
-      <Modal
-        open={openComplete}
-        onClose={() => setOpenComplete(false)}
-        title="웨이퍼 제조 단계 완료!"
-        description="다음 단계인 산화공정으로 넘어가시겠습니까?"
-        cancelText="나가기"
-        confirmText="다음 단계"
-        onConfirm={() => {
-          setOpenComplete(false);
-          navigate("/detail/step2");
-        }}
-        disableBackdropClose
-        hideCancel={false}
-      />
-    </S.PageContainer>
+    </StepLayout>
   );
 };
 

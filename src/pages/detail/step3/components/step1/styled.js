@@ -5,7 +5,7 @@ export const Grid = styled.div`
   grid-template-columns: repeat(2, minmax(120px, 34vw));
   gap: clamp(16px, 4vw, 28px);
   justify-content: center;
-  margin: clamp(18px, 4vh, 32px) auto 0;
+  margin: clamp(10vh, 4vh, 32px) auto 0;
   width: 100%;
   max-width: 520px;
 
