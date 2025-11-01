@@ -1,13 +1,13 @@
 import React from "react";
-import CommonHeader from "@components/common/Header/Header";
-import CommonDescription from "@components/common/Description/Description";
 import * as S from "./styled";
 import BottomButton from "@components/common/BottomButton/BottomButton";
 import Step1Component from "./components/step1";
 import Step2Component from "./components/step2";
 import Step3Component from "./components/step3";
-import Modal from "@components/common/Modal/Modal";
 import { usePhotoProcess } from "./hooks/usePhotoProcess";
+import StepLayout from "@components/layout/StepLayout/StepLayout";
+import { STEP_CONTENT } from "@constants/stepContent";
+import StepCompletionModal from "@components/common/Modal/StepCompletionModal";
 
 const Step3Page = () => {
   const {
@@ -21,16 +21,26 @@ const Step3Page = () => {
     handleLightsStatusChange,
     handleStep3Complete,
     handleModalClose,
-    handleModalConfirm,
-    descriptionText,
-    subDescriptionText,
   } = usePhotoProcess();
 
-  return (
-    <S.PageContainer>
-      <CommonHeader title="3단계: 포토리소그래피" />
-      <CommonDescription text={descriptionText} subText={subDescriptionText} />
+  const content = STEP_CONTENT[3];
 
+  const modalProps = {
+    open: showModal,
+    onClose: handleModalClose,
+    stepNumber: 3,
+    modalContent: content.modal,
+  };
+
+  return (
+    <StepLayout
+      title={content.title}
+      description={content.description(currentSubStep)}
+      subDescription={content.subDescription(currentSubStep)}
+      helpText={content.helpText(currentSubStep)}
+      ModalComponent={StepCompletionModal}
+      modalProps={modalProps}
+    >
       {currentSubStep === 1 && (
         <Step1Component selected={selected} setSelected={setSelected} />
       )}
@@ -47,17 +57,7 @@ const Step3Page = () => {
         onClick={handleNext}
         text={currentSubStep === 1 ? "다음" : (currentSubStep === 2 ? "다음" : "완료")}
       />
-
-      <Modal
-        open={showModal}
-        onClose={handleModalClose}
-        onConfirm={handleModalConfirm}
-        title="포토리소그래피 단계 완료!"
-        description="다음 단계인 식각공정으로 넘어가시겠습니까?"
-        confirmText="다음 단계"
-        cancelText="나가기"
-      />
-    </S.PageContainer>
+    </StepLayout>
   );
 };
 

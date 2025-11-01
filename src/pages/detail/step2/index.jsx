@@ -1,17 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import CommonHeader from "@components/common/Header/Header";
-import CommonDescription from "@components/common/Description/Description";
-import Modal from "@components/common/Modal/Modal";
 import Oxidation from "./assets/Oxidation.png";
 import * as S from "./styled";
 import { DndContext, MouseSensor, TouchSensor, useSensor, useSensors, DragOverlay, closestCenter } from "@dnd-kit/core";
 import { TargetDroppable, ChipDraggable } from "./DndPieces";
 import { useOxidationGame } from "./hooks/useOxidationGame";
 import { TARGETS, OPTIONS } from "./constants";
+import StepLayout from "@components/layout/StepLayout/StepLayout";
+import { STEP_CONTENT } from "@constants/stepContent";
+import StepCompletionModal from "@components/common/Modal/StepCompletionModal";
 
 const Step2Page = () => {
-  const navigate = useNavigate();
   const {
     openComplete,
     setOpenComplete,
@@ -27,11 +25,23 @@ const Step2Page = () => {
     useSensor(TouchSensor, { pressDelay: 80, pressThreshold: 8 })
   );
 
-  return (
-    <S.PageContainer>
-      <CommonHeader title="2단계: 산화공정" />
-      <CommonDescription text={"각 키워드에 맞는 단위를 맞춰보세요."} />
+  const content = STEP_CONTENT[2];
 
+  const modalProps = {
+    open: openComplete,
+    onClose: () => setOpenComplete(false),
+    stepNumber: 2,
+    modalContent: content.modal,
+  };
+
+  return (
+    <StepLayout
+      title={content.title}
+      description={content.description}
+      helpText={content.helpText}
+      ModalComponent={StepCompletionModal}
+      modalProps={modalProps}
+    >
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
@@ -73,18 +83,7 @@ const Step2Page = () => {
           </S.ChipBase> : null}
         </DragOverlay>
       </DndContext>
-
-      <Modal
-        open={openComplete}
-        onClose={() => setOpenComplete(false)}
-        title="산화공정 단계 완료!"
-        description="다음 단계인 포토리소그래피로 넘어가시겠습니까?"
-        cancelText="나가기"
-        confirmText="다음 단계"
-        onConfirm={() => { setOpenComplete(false); navigate("/detail/step3"); }}
-        disableBackdropClose
-      />
-    </S.PageContainer>
+    </StepLayout>
   );
 };
 
