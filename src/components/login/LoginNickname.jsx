@@ -1,11 +1,14 @@
 import * as S from "./styled";
 import { useState } from "react";
-import NickNameLogo from "@assets/images/NickNameLogo.png";
+import { useNavigate } from "react-router-dom";
 import { LoginBtn } from "@components/btn/LoginBtn";
+
+import NickNameLogo from "@assets/images/NickNameLogo.png";
 export const LoginNickname = () => {
+  const navigate = useNavigate();
   const [nickname, setNickname] = useState("");
   const handleHome = () => {
-    console.log("닉네임:", nickname);
+    navigate("/home");
   };
   return (
     <S.NameWrapper>
@@ -25,6 +28,7 @@ export const LoginNickname = () => {
           onClick={handleHome}
           text={"시작하기"}
           disabled={!nickname.trim()}
+          isGradation={true}
         />
       </S.BtnContainer>
     </S.NameWrapper>

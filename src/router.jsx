@@ -5,6 +5,7 @@ import { LoginPage } from "@pages/login/Login";
 import { HomePage } from "@pages/home/Home";
 import { TrainingPage } from "@pages/training/Training";
 import { MyPage } from "@pages/My/MyPage";
+import { QuizPage } from "@pages/Quiz/Quiz";
 import Step1Page from "@pages/detail/step1";
 import Step2Page from "@pages/detail/step2";
 import Step3Page from "@pages/detail/step3";
@@ -19,10 +20,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      // {
-      //   index: true,
-      //  element: <Navigate to="/login" replace />,
-      // },
+      {
+        index: true,
+        element: <Navigate to="/login" replace />,
+      },
       {
         path: "/login",
         element: <LoginPage />,
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/mypage",
         element: <MyPage />,
+      },
+      {
+        path: "/quiz",
+        element: <QuizPage />,
       },
       {
         path: "/detail/step1",
@@ -59,6 +64,7 @@ const router = createBrowserRouter([
         path: "/detail/step5",
         element: <Step5Page />,
       },
+
       {
         path: "/detail/step6",
         element: <Step6Page />,
