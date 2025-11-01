@@ -1,6 +1,6 @@
 import * as S from "./styled";
 import { useState, useEffect } from "react";
-export const QuizComp = ({ question, displayNo }) => {
+export const QuizComp = ({ question, displayNo, onAnswer }) => {
   const [answer, setAnswer] = useState(null);
   if (!question) return null;
   useEffect(() => {
@@ -9,6 +9,7 @@ export const QuizComp = ({ question, displayNo }) => {
 
   const handleClick = (choice) => {
     setAnswer(choice);
+    onAnswer?.(choice);
   };
   return (
     <S.QuizWrapper>

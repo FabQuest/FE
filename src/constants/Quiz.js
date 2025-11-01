@@ -1,28 +1,45 @@
 export const Questions = [
   {
     id: 1,
+    type: "OX",
     Question:
       "웨이퍼 제조 단계에서는 실리콘 잉곳을 절단하고 연마하여 평탄한 기판을 만든다.",
+    correct: "O",
   },
   {
     id: 2,
+    type: "OX",
+
     Question: " CCP 플라즈마 산화 공정에서 O₂ 유량의 단위는 ‘W(와트)’이다.",
+    correct: "X",
   },
   {
     id: 3,
+    type: "OX",
+
     Question:
       "포토리소그래피 단계에서 사용되는 마스크는 석영판 위에 크롬(Chromium) 금속으로 패턴을 만든다.",
+    correct: "O",
   },
   {
     id: 4,
+    type: "OX",
+
     Question:
       "포토리소그래피 공정에서 스테퍼(Stepper)는 마스크와 웨이퍼를 나노미터 단위로 정밀하게 맞추기 위해 사용된다.",
+    correct: "O",
   },
-  { id: 5, Question: "EDS 공정은 웨이퍼를 절단하는 과정이다." },
+  {
+    id: 5,
+    type: "OX",
+    Question: "EDS 공정은 웨이퍼를 절단하는 과정이다.",
+    correct: "X",
+  },
 ];
 export const SubjectiveQs = [
   {
     id: 1,
+    type: "SUBJ",
     Question: "웨이퍼 제조 과정에서 ‘평탄화’를 하는 이유는?",
     choices: [
       " ① 반짝이게 만들기 위해",
@@ -34,6 +51,8 @@ export const SubjectiveQs = [
   },
   {
     id: 2,
+    type: "SUBJ",
+
     Question:
       "다음 중 CCP 플라즈마 산화 공정에서 사용하는 단위가 올바르게 짝지어진 것은?",
     choices: [
@@ -46,6 +65,8 @@ export const SubjectiveQs = [
   },
   {
     id: 3,
+    type: "SUBJ",
+
     Question:
       "포토리소그래피에서 ‘포토레지스트(PR)’가 빛을 받으면 어떻게 되는가?",
     choices: [
@@ -58,6 +79,7 @@ export const SubjectiveQs = [
   },
   {
     id: 4,
+    type: "SUBJ",
     Question: "다음 중 에칭(Etching) 공정에 대한 설명으로 옳은 것은?",
     choices: [
       " ① 플라즈마를 이용해 웨이퍼 표면을 녹여서 회로를 만든다.",
@@ -69,6 +91,7 @@ export const SubjectiveQs = [
   },
   {
     id: 5,
+    type: "SUBJ",
     Question: "패키징 공정에 대한 설명으로 옳은 것은?",
     choices: [
       " ① EDS 단계에서 바로 칩을 절단한다.",
@@ -79,7 +102,6 @@ export const SubjectiveQs = [
     correctIndex: 2,
   },
 ];
-export const CombinedQuestions = [
-  ...Questions.map((q) => ({ ...q, type: "OX" })),
-  ...SubjectiveQs.map((q) => ({ ...q, type: "SUBJ" })),
-];
+export const CombinedQuestions = [...Questions, ...SubjectiveQs].map(
+  (q, i) => ({ ...q, seq: i + 1 })
+);

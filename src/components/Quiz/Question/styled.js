@@ -78,7 +78,7 @@ export const AnswerBtn = styled.div`
 
   background-color: ${({ $active, $type, theme }) =>
     $active
-      ? $type === "X"
+      ? $type === "O"
         ? theme.colors.purple01
         : theme.colors.red01
       : theme.colors.white01};

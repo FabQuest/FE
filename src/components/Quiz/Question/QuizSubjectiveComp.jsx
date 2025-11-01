@@ -1,7 +1,7 @@
 import * as S from "./styled";
 import { useState, useEffect } from "react";
 
-export const QuizSubjectiveComp = ({ question, displayNo }) => {
+export const QuizSubjectiveComp = ({ question, displayNo, onAnswer }) => {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => setSelected(null), [question?.id]);
@@ -9,7 +9,7 @@ export const QuizSubjectiveComp = ({ question, displayNo }) => {
   if (!question) return null;
   const handleChoose = (i) => {
     setSelected(i);
-    onAnswer?.(i); // 부모에서 기록/채점 원하면 사용
+    onAnswer?.(i);
   };
   return (
     <S.SubJQuestionWrapper>
