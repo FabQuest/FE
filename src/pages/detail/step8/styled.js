@@ -93,6 +93,7 @@ export const Step3Container = styled.div`
   color: gray;
   height: 100%;
   position: relative;
+  margin-top: -70px;
 `;
 
 export const ClickableContainer = styled.div`
