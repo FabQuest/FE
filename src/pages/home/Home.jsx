@@ -30,10 +30,12 @@ export const HomePage = () => {
       window.history.replaceState(null, "", pathname + (hash || ""));
     }
   }, [search, hash, pathname]);
+
   const { UserData } = useHomeUserInfo();
   console.log(UserData);
+  const step = UserData?.stageNumber ?? 0;
   const [isQuizState, setIsQuizState] = useState(false);
-  const isQuizAvailable = UserData.stageNumber > 7;
+  const isQuizAvailable = step > 7;
 
   const handletraingPage = () => {
     navigate("/training");
@@ -56,7 +58,7 @@ export const HomePage = () => {
           <S.SubText>8대 공정 체험을 시작해보세요!</S.SubText>
         </S.TextContainer>
 
-        <GaugeBar step={UserData.stageNumber} />
+        <GaugeBar step={step} />
 
         <S.BtnContainer>
           <LoginBtn
