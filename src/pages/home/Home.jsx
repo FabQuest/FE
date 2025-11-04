@@ -7,9 +7,10 @@ import { LoginBtn } from "@components/btn/LoginBtn";
 import { Footer } from "@components/footer/Footer";
 import { GaugeBar } from "@components/GaugeBar/GaugeBar";
 import { QuizModal } from "@components/home/QuizModal";
+import { useHomeUserInfo } from "@hooks/Home/useHomeUserInfo";
 import HomeCharacter from "@assets/images/HomeCharacter.png";
 
-export const HomePage = ({ stepex = 8 }) => {
+export const HomePage = () => {
   const { search, hash, pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -26,13 +27,13 @@ export const HomePage = ({ stepex = 8 }) => {
         secure: true,
         sameSite: "None",
       });
-      // ✅ URL에서 쿼리 제거 (현재 라우트 유지)
       window.history.replaceState(null, "", pathname + (hash || ""));
     }
   }, [search, hash, pathname]);
-
+  const { UserData } = useHomeUserInfo();
+  console.log(UserData);
   const [isQuizState, setIsQuizState] = useState(false);
-  const isQuizAvailable = stepex > 7;
+  const isQuizAvailable = UserData.stageNumber > 7;
 
   const handletraingPage = () => {
     navigate("/training");
@@ -55,7 +56,7 @@ export const HomePage = ({ stepex = 8 }) => {
           <S.SubText>8대 공정 체험을 시작해보세요!</S.SubText>
         </S.TextContainer>
 
-        <GaugeBar step={stepex} />
+        <GaugeBar step={UserData.stageNumber} />
 
         <S.BtnContainer>
           <LoginBtn

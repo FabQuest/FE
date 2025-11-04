@@ -1,6 +1,6 @@
 import * as S from "./styled";
 import { useState } from "react";
-import LoginLogo from "@assets/images/LoginLogo.png";
+import LoginLogo from "@assets/images/LoginCharacter.png";
 import FabQuest from "@assets/images/FabQuest.png";
 import KakaoImg from "@assets/images/KakaoTalk.png";
 import { LoginNickname } from "@components/login/LoginNickname";
@@ -21,18 +21,16 @@ export const LoginPage = () => {
         ) : (
           <S.LogoWrapper>
             <S.TextWrapper>
-              <S.LogoImg src={LoginLogo} />
+              <S.CharacterImg src={LoginLogo} />
               <S.LogoImg src={FabQuest} />
               <S.LoginText>반도체 8대 공정 체험하기</S.LoginText>
             </S.TextWrapper>
-            <S.BtnContainer>
-              <a href={kakaoLoginUrl}>
-                <LoginBtn
-                  onClick={() => setLogin(true)}
-                  imgSrc={KakaoImg}
-                  text={" 카카오로 시작하기"}
-                />
-              </a>
+            <S.BtnContainer href={kakaoLoginUrl}>
+              <LoginBtn
+                onClick={() => setLogin(true)}
+                imgSrc={KakaoImg}
+                text={" 카카오로 시작하기"}
+              />
             </S.BtnContainer>
           </S.LogoWrapper>
         )}
