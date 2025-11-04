@@ -1,6 +1,6 @@
 import { getUserHomeInfo } from "@apis/user";
 import { useState, useEffect } from "react";
-
+import Cookies from "js-cookie";
 export const useHomeUserInfo = () => {
   const [UserData, setUserData] = useState(null);
 
