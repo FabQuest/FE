@@ -7,7 +7,7 @@ import { LoginNickname } from "@components/login/LoginNickname";
 import { LoginBtn } from "@components/btn/LoginBtn";
 export const LoginPage = () => {
   const [Login, setLogin] = useState(false);
-
+  //fix
   return (
     <>
       <S.BackGround>
