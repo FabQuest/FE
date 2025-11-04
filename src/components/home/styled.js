@@ -27,6 +27,7 @@ export const RemoveIcon = styled.img`
   top: 10%;
   left: 90%;
   width: 16px;
+  cursor: pointer;
 `;
 export const MainText = styled.div`
   display: flex;

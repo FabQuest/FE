@@ -11,8 +11,16 @@ import BeginnerIcon from "@assets/images/BeginnerIcon.png";
 import ApprenticeIcon from "@assets/images/ApprenticeIcon.png";
 import MasterIcon from "@assets/images/MasterIcon.png";
 
-export const MyPage = ({ score = 7 }) => {
+export const MyPage = ({ score = 0, stepex = 5, NickName = "하채민" }) => {
   const [isOpenPrize, setIsOpenPrize] = useState(false);
+  const UserLevel =
+    score < 3
+      ? "8대 공정 체험을 시작해보세요!"
+      : score < 6
+      ? "공정 초보자"
+      : score < 9
+      ? "공정 견습생"
+      : "공정 마스터";
   const handleOpenPrize = () => {
     setIsOpenPrize(true);
     console.log("상장 보러가기");
@@ -27,19 +35,19 @@ export const MyPage = ({ score = 7 }) => {
         <S.Container>
           <S.MyInfoBox>
             <S.MyIcon src={MyIcon} />
-            <S.MyName>하채민</S.MyName>
-            <S.MyInfoText>8대 공정 체험을 시작해보세요!</S.MyInfoText>
+            <S.MyName>{NickName}</S.MyName>
+            <S.MyInfoText>{UserLevel}</S.MyInfoText>
           </S.MyInfoBox>
           <ProgressStep
             isMypage={true}
             text={"전체 진도"}
-            step={5}
+            step={stepex}
             isTraining={true}
           />
           <S.BadgeContainer>
             <S.BadgeTextBox>
               <S.BadgeText>획득한 뱃지</S.BadgeText>
-              <S.BadgeScore>{score}/10</S.BadgeScore>
+              <S.BadgeScore>{stepex === 8 ? score : "0"}/10</S.BadgeScore>
             </S.BadgeTextBox>
             <S.BadgeImg
               src={
@@ -53,10 +61,11 @@ export const MyPage = ({ score = 7 }) => {
               }
             />
             <GradationBtn
-              text={score < 3 ? "체험을 모두 완료하세요" : "상장 보러가기"}
-              width={"173"}
+              text={stepex < 8 ? "체험을 모두 완료하세요" : "상장 보러가기"}
+              width={stepex < 8 ? "185" : "173"}
               onAction={handleOpenPrize}
               isMy={true}
+              disabled={stepex < 8 ? true : false}
             />
           </S.BadgeContainer>
         </S.Container>

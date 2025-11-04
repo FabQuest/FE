@@ -7,7 +7,7 @@ import { TrainingMap } from "@components/training/TrainingMap";
 import { ExplainCard } from "@components/training/ExplainCard";
 import { ProgressStep } from "@components/training/ProgressStep";
 import Background from "@assets/images/TrainingBackground.png";
-export const TrainingPage = ({ stepex = 8 }) => {
+export const TrainingPage = ({ stepex = 6 }) => {
   const [selectedStep, setSelectedStep] = useState({ id: stepex, nonce: 0 });
   const currentPos = useMemo(
     () => STEPS.find((s) => s.id === stepex) ?? STEPS[0],
@@ -42,6 +42,7 @@ export const TrainingPage = ({ stepex = 8 }) => {
         />
 
         <ExplainCard
+          stepex={stepex}
           stepId={currentExplain.step}
           title={currentExplain.explainName}
           text={currentExplain.explainText}

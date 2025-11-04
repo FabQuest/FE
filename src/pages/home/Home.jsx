@@ -1,6 +1,8 @@
 import * as S from "./styled";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+
 import { LoginBtn } from "@components/btn/LoginBtn";
 import { Footer } from "@components/footer/Footer";
 import { GaugeBar } from "@components/GaugeBar/GaugeBar";
@@ -8,9 +10,30 @@ import { QuizModal } from "@components/home/QuizModal";
 import HomeCharacter from "@assets/images/HomeCharacter.png";
 
 export const HomePage = ({ stepex = 8 }) => {
+  const { search, hash, pathname } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const params = new URLSearchParams(search);
+    let token = params.get("accessToken");
+    if (!token && hash) {
+      const h = new URLSearchParams(hash.replace(/^#/, ""));
+      token = h.get("accessToken");
+    }
+    if (token) {
+      Cookies.set("access_token", token, {
+        path: "/",
+        secure: true,
+        sameSite: "None",
+      });
+      // ✅ URL에서 쿼리 제거 (현재 라우트 유지)
+      window.history.replaceState(null, "", pathname + (hash || ""));
+    }
+  }, [search, hash, pathname]);
+
   const [isQuizState, setIsQuizState] = useState(false);
   const isQuizAvailable = stepex > 7;
-  const navigate = useNavigate();
+
   const handletraingPage = () => {
     navigate("/training");
   };
