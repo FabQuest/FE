@@ -1,9 +1,9 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import React from "react";
 import App from "./App";
-import { LoginPage } from "@pages/login/Login";
-import { HomePage } from "@pages/home/Home";
-import { TrainingPage } from "@pages/training/Training";
+import { LoginPage } from "@pages/Login/Login";
+import { HomePage } from "@pages/Home/Home";
+import { TrainingPage } from "@pages/Training/Training";
 import { MyPage } from "@pages/My/MyPage";
 import { QuizPage } from "@pages/Quiz/Quiz";
 import Step1Page from "@pages/detail/step1";
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
       {
         path: "/detail/step8",
         element: <Step8Page />,
-      }
+      },
     ],
   },
 ]);
