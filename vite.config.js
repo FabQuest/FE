@@ -6,9 +6,11 @@ import fs from "fs";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  server: {},
+  // server: {},
   plugins: [react()],
-
+  server: {
+    port: 5173,
+  },
   resolve: {
     alias: {
       "@apis": path.resolve(__dirname, "src/apis"),
