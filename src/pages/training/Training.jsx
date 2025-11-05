@@ -6,12 +6,19 @@ import { EXPLAINS } from "@constants/Step";
 import { TrainingMap } from "@components/training/TrainingMap";
 import { ExplainCard } from "@components/training/ExplainCard";
 import { ProgressStep } from "@components/training/ProgressStep";
+import { useHomeUserInfo } from "@hooks/Home/useHomeUserInfo";
 import Background from "@assets/images/TrainingBackground.png";
-export const TrainingPage = ({ stepex = 6 }) => {
-  const [selectedStep, setSelectedStep] = useState({ id: stepex, nonce: 0 });
+export const TrainingPage = () => {
+  const { UserData } = useHomeUserInfo();
+  const Trainingstep = UserData?.stageNumber;
+
+  const [selectedStep, setSelectedStep] = useState({
+    id: Trainingstep,
+    nonce: 0,
+  });
   const currentPos = useMemo(
-    () => STEPS.find((s) => s.id === stepex) ?? STEPS[0],
-    [stepex]
+    () => STEPS.find((s) => s.id === Trainingstep) ?? STEPS[0],
+    [Trainingstep]
   );
   const currentExplain = useMemo(
     () => EXPLAINS.find((s) => s.step === selectedStep.id) ?? EXPLAINS[0],
@@ -31,18 +38,18 @@ export const TrainingPage = ({ stepex = 6 }) => {
       <S.Container>
         <ProgressStep
           text={" 반도체 8대 공정 체험"}
-          step={stepex}
+          step={Trainingstep}
           isTraining={true}
         />
 
         <TrainingMap
-          currentStep={stepex}
+          currentStep={Trainingstep}
           currentPos={currentPos}
           onStepClick={handleStepClick}
         />
 
         <ExplainCard
-          stepex={stepex}
+          stepex={Trainingstep}
           stepId={currentExplain.step}
           title={currentExplain.explainName}
           text={currentExplain.explainText}

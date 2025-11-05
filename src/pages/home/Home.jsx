@@ -17,9 +17,11 @@ export const HomePage = () => {
   useEffect(() => {
     const params = new URLSearchParams(search);
     let token = params.get("accessToken");
-    if (!token && hash) {
+    let nickname = params.get("nickname");
+    if ((!token || !nickname) && hash) {
       const h = new URLSearchParams(hash.replace(/^#/, ""));
       token = h.get("accessToken");
+      nickname = h.get("nickname");
     }
     if (token) {
       Cookies.set("access_token", token, {
@@ -27,13 +29,22 @@ export const HomePage = () => {
         secure: true,
         sameSite: "None",
       });
+    }
+    if (nickname) {
+      Cookies.set("nickname", nickname, {
+        path: "/",
+        secure: true,
+        sameSite: "None",
+      });
+    }
+    if (token || nickname) {
       window.history.replaceState(null, "", pathname + (hash || ""));
     }
   }, [search, hash, pathname]);
 
   const { UserData } = useHomeUserInfo();
   console.log(UserData);
-  const step = UserData?.stageNumber ?? 0;
+  const step = UserData?.stageNumber ?? 8;
   const [isQuizState, setIsQuizState] = useState(false);
   const isQuizAvailable = step > 7;
 
@@ -48,13 +59,13 @@ export const HomePage = () => {
     }
   };
   const closeQuizModal = () => setIsQuizState(false);
-
+  const nick = Cookies.get("nickname");
   return (
     <S.BackGround>
       <S.HomeContainer>
         <S.LogoImg src={HomeCharacter} />
         <S.TextContainer>
-          <S.NameText>하채민님,</S.NameText>
+          <S.NameText>{nick}님,</S.NameText>
           <S.SubText>8대 공정 체험을 시작해보세요!</S.SubText>
         </S.TextContainer>
 
