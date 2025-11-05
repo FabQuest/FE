@@ -6,7 +6,7 @@ import KakaoImg from "@assets/images/KakaoTalk.png";
 import { LoginNickname } from "@components/login/LoginNickname";
 import { LoginBtn } from "@components/btn/LoginBtn";
 const API_BASE = "https://fabquest.oss-project-six.shop";
-const FE_CALLBACK = "https://fabquest-fe.vercel.app/auth/callback";
+const FE_CALLBACK = "https://fabquest-fe.vercel.app/home";
 export const LoginPage = () => {
   const [Login, setLogin] = useState(false);
   const kakaoLoginUrl = `${API_BASE}/oauth2/authorization/kakao?redirectUri=${encodeURIComponent(
