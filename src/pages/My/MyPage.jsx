@@ -4,6 +4,7 @@ import { Footer } from "@components/footer/Footer";
 import { ProgressStep } from "@components/training/ProgressStep";
 import { GradationBtn } from "@components/training/GradationBtn";
 import { PrizeModal } from "@components/My/PrizeModal";
+import { useUserQuizScore } from "@hooks/My/useUserQuizScore";
 import Background from "@assets/images/MyBackground.png";
 import MyIcon from "@assets/images/MyCharacter.png";
 import LockedIcon from "@assets/images/LockedIcon.png";
@@ -12,6 +13,8 @@ import ApprenticeIcon from "@assets/images/ApprenticeIcon.png";
 import MasterIcon from "@assets/images/MasterIcon.png";
 
 export const MyPage = ({ score = 0, stepex = 5, NickName = "하채민" }) => {
+  const { QuizScore } = useUserQuizScore();
+  console.log("마이페이지:", QuizScore);
   const [isOpenPrize, setIsOpenPrize] = useState(false);
   const UserLevel =
     score < 3
