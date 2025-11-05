@@ -6,7 +6,12 @@ import { CombinedQuestions } from "@constants/Quiz";
 import { QuizSubjectiveComp } from "./QuizSubjectiveComp";
 import BackIcon from "@assets/icon/backbutton.png";
 
-export const QuizQuestion = ({ results, setResults, onSubmit }) => {
+export const QuizQuestion = ({
+  results,
+  setResults,
+  onSubmit,
+  setIsBackState,
+}) => {
   const items = useMemo(() => CombinedQuestions, []);
   const [idx, setIdx] = useState(0);
   const current = items[idx];
@@ -52,12 +57,14 @@ export const QuizQuestion = ({ results, setResults, onSubmit }) => {
     if (idx < items.length - 1) setIdx((v) => v + 1);
     else onSubmit();
   };
-
+  const handleChangeBackState = () => {
+    setIsBackState(true);
+  };
   return (
     <S.Container>
       <S.TitleBox>
         퀴즈 풀기
-        <S.BackIcon src={BackIcon} />
+        <S.BackIcon src={BackIcon} onClick={handleChangeBackState} />
       </S.TitleBox>
       {current?.type === "OX" ? (
         <QuizComp

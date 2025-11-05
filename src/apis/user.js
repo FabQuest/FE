@@ -21,3 +21,14 @@ export const getUserQuizScores = async () => {
     throw err;
   }
 };
+//퀴즈갱신
+export const postQuizScore = async (quizCount) => {
+  try {
+    const res = await instance.post(`/correct/${quizCount}`);
+    console.log(res);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};

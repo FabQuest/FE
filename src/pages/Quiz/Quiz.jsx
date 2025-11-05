@@ -3,7 +3,7 @@ import { useState } from "react";
 import { GradationBtn } from "@components/training/GradationBtn";
 import { QuizQuestion } from "@components/Quiz/Question/QuizQuestion";
 import { QuizResult } from "@components/Quiz/Result/QuizResult";
-
+import { BackModal } from "@components/Quiz/BackModal/BackModal";
 import Background from "@assets/images/MyBackground.png";
 import Character from "@assets/images/QuizCharacter.png";
 
@@ -11,6 +11,7 @@ export const QuizPage = () => {
   const [openQuizComp, setOpenQuizComp] = useState(false);
   const [isResult, setIsResult] = useState(false);
   const [results, setResults] = useState({});
+  const [isBackState, setIsBackState] = useState(false);
 
   const startQuiz = () => {
     setResults({});
@@ -21,7 +22,7 @@ export const QuizPage = () => {
   const handleSubmit = () => {
     setIsResult(true);
   };
-
+  const closeBackModal = () => setIsBackState(false);
   return (
     <>
       {isResult ? (
@@ -35,11 +36,20 @@ export const QuizPage = () => {
       ) : (
         <>
           {openQuizComp ? (
-            <QuizQuestion
-              results={results}
-              setResults={setResults}
-              onSubmit={handleSubmit}
-            />
+            <>
+              <QuizQuestion
+                setIsBackState={setIsBackState}
+                results={results}
+                setResults={setResults}
+                onSubmit={handleSubmit}
+              />
+              {isBackState && (
+                <BackModal
+                  setIsBackState={setIsBackState}
+                  onClose={closeBackModal}
+                />
+              )}
+            </>
           ) : (
             <S.Wrapper>
               <S.Background src={Background} />

@@ -1,17 +1,18 @@
 import * as S from "./styled";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import BackIcon from "@assets/icon/backbutton.png";
 import HappyImg from "@assets/images/QuizResultHappyImg.png";
 import SadImg from "@assets/images/QuizResultSadImg.png";
 
 import { GradationBtn } from "@components/training/GradationBtn";
-
+import { postQuizScore } from "@apis/user";
 export const QuizResult = ({ results, onRetry }) => {
+  const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
   const list = Object.values(results);
   console.log("결과:", results);
   const correct = list.filter((r) => r.isCorrect).length;
-
   const UserLevel =
     correct < 3
       ? ""
@@ -22,8 +23,17 @@ export const QuizResult = ({ results, onRetry }) => {
       : "공정 마스터";
   const isSuccess = correct < 3 ? false : true;
 
-  const handleMyPage = () => {
-    navigate("/mypage");
+  const handleMyPage = async () => {
+    if (submitting) return;
+    try {
+      setSubmitting(true);
+      await postQuizScore(correct);
+      navigate("/mypage");
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setSubmitting(false);
+    }
   };
   return (
     <S.Container>
