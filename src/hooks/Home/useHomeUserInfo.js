@@ -1,20 +1,21 @@
 import { getUserHomeInfo } from "@apis/user";
 import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
-export const useHomeUserInfo = (enabled) => {
+export const useHomeUserInfo = () => {
   const [UserData, setUserData] = useState(null);
 
+  const fetchUserInfo = async () => {
+    try {
+      const res = await getUserHomeInfo();
+      console.log("res:", res);
+      setUserData(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    (async () => {
-      try {
-        const data = await getUserHomeInfo();
-        setUserData(data);
-      } catch (e) {
-        console.error(e);
-        setUserData(null);
-      }
-    })();
-  }, [enabled]);
+    fetchUserInfo();
+  }, []);
 
   return { UserData };
 };
