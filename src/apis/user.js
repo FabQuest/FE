@@ -3,6 +3,7 @@ import { instance } from "./instance";
 export const getUserHomeInfo = async () => {
   try {
     const res = await instance.get("/stage/userStage");
+    console.log(res);
     return res.data?.data ?? null;
   } catch (err) {
     console.log(err);

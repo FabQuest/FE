@@ -30,8 +30,8 @@ export const HomePage = () => {
       window.history.replaceState(null, "", pathname + (hash || ""));
     }
   }, [search, hash, pathname]);
-  const token = Cookies.get("access_token");
-  const { UserData } = useHomeUserInfo(!!token);
+
+  const { UserData } = useHomeUserInfo();
   console.log(UserData);
   const step = UserData?.stageNumber ?? 0;
   const [isQuizState, setIsQuizState] = useState(false);
