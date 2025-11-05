@@ -9,9 +9,7 @@ const API_BASE = "https://fabquest.oss-project-six.shop";
 const FE_CALLBACK = "https://fabquest-fe.vercel.app/home";
 export const LoginPage = () => {
   const [Login, setLogin] = useState(false);
-  const kakaoLoginUrl = `${API_BASE}/oauth2/authorization/kakao?redirectUri=${encodeURIComponent(
-    FE_CALLBACK
-  )}`;
+  const kakaoLoginUrl = `${API_BASE}/oauth2/authorization/kakao`;
 
   return (
     <>

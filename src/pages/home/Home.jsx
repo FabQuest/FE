@@ -10,19 +10,34 @@ import { QuizModal } from "@components/home/QuizModal";
 import { useHomeUserInfo } from "@hooks/Home/useHomeUserInfo";
 import HomeCharacter from "@assets/images/HomeCharacter.png";
 
+function safeDecode(v) {
+  if (!v) return v;
+  try {
+    const once = decodeURIComponent(v);
+    return /%[0-9A-Fa-f]{2}/.test(once) ? decodeURIComponent(once) : once;
+  } catch (e) {
+    return v;
+  }
+}
 export const HomePage = () => {
   const { search, hash, pathname } = useLocation();
   const navigate = useNavigate();
+
+  const [nick, setNick] = useState(() => Cookies.get("nickname") || "");
 
   useEffect(() => {
     const params = new URLSearchParams(search);
     let token = params.get("accessToken");
     let nickname = params.get("nickname");
+
     if ((!token || !nickname) && hash) {
       const h = new URLSearchParams(hash.replace(/^#/, ""));
-      token = h.get("accessToken");
-      nickname = h.get("nickname");
+      token ??= h.get("accessToken");
+      nickname ??= h.get("nickname");
     }
+
+    if (nickname) nickname = safeDecode(nickname);
+
     if (token) {
       Cookies.set("access_token", token, {
         path: "/",
@@ -36,15 +51,17 @@ export const HomePage = () => {
         secure: true,
         sameSite: "None",
       });
+      setNick(nickname);
     }
+
     if (token || nickname) {
-      window.history.replaceState(null, "", pathname + (hash || ""));
+      navigate(pathname, { replace: true });
     }
-  }, [search, hash, pathname]);
+  }, [search, hash, pathname, navigate]);
 
   const { UserData } = useHomeUserInfo();
-  console.log(UserData);
-  const step = UserData?.stageNumber ?? 8;
+  const step = UserData?.stageNumber ?? 0;
+
   const [isQuizState, setIsQuizState] = useState(false);
   const isQuizAvailable = step > 7;
 
@@ -59,13 +76,12 @@ export const HomePage = () => {
     }
   };
   const closeQuizModal = () => setIsQuizState(false);
-  const nick = Cookies.get("nickname");
   return (
     <S.BackGround>
       <S.HomeContainer>
         <S.LogoImg src={HomeCharacter} />
         <S.TextContainer>
-          <S.NameText>{nick}님,</S.NameText>
+          <S.NameText>{nick ? `${nick}님,` : ""}</S.NameText>
           <S.SubText>8대 공정 체험을 시작해보세요!</S.SubText>
         </S.TextContainer>
 
