@@ -65,7 +65,7 @@ const Step6Page = () => {
           <img src={bulbSrc} alt="bulb" />
         </S.BulbWrap>
 
-        <GameBoard placements={placements} />
+        <GameBoard placements={placements} trayHeights={trayHeights} />
 
         <PieceTray
           placements={placements}
