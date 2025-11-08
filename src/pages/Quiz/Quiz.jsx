@@ -39,7 +39,6 @@ export const QuizPage = () => {
             <>
               <QuizQuestion
                 setIsBackState={setIsBackState}
-                results={results}
                 setResults={setResults}
                 onSubmit={handleSubmit}
               />

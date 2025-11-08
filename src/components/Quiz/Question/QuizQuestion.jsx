@@ -6,12 +6,7 @@ import { CombinedQuestions } from "@constants/Quiz";
 import { QuizSubjectiveComp } from "./QuizSubjectiveComp";
 import BackIcon from "@assets/icon/backbutton.png";
 
-export const QuizQuestion = ({
-  results,
-  setResults,
-  onSubmit,
-  setIsBackState,
-}) => {
+export const QuizQuestion = ({ setResults, onSubmit, setIsBackState }) => {
   const items = useMemo(() => CombinedQuestions, []);
   const [idx, setIdx] = useState(0);
   const current = items[idx];
@@ -46,11 +41,6 @@ export const QuizQuestion = ({
       }));
     },
     [current, displayNo]
-  );
-  const correctCount = useMemo(
-    () =>
-      Object.values(results).reduce((acc, r) => acc + (r.isCorrect ? 1 : 0), 0),
-    [results]
   );
 
   const goNext = () => {

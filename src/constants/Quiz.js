@@ -5,6 +5,8 @@ export const Questions = [
     Question:
       "웨이퍼 제조 단계에서는 실리콘 잉곳을 절단하고 연마하여 평탄한 기판을 만든다.",
     correct: "O",
+    explanation:
+      "실리콘 잉곳을 슬라이싱·연마(래핑/폴리싱)해 평탄한 웨이퍼로 만들어야 이후 공정에서 패턴이 왜곡되지 않습니다.",
   },
   {
     id: 2,
@@ -12,6 +14,8 @@ export const Questions = [
 
     Question: " CCP 플라즈마 산화 공정에서 O₂ 유량의 단위는 ‘W(와트)’이다.",
     correct: "X",
+    explanation:
+      "O₂ 유량은 sccm(분당 표준 입방센티미터)로 표기하고, W(와트)는 RF 파워의 단위입니다.",
   },
   {
     id: 3,
@@ -20,6 +24,8 @@ export const Questions = [
     Question:
       "포토리소그래피 단계에서 사용되는 마스크는 석영판 위에 크롬(Chromium) 금속으로 패턴을 만든다.",
     correct: "O",
+    explanation:
+      "포토마스크는 석영 기판 위에 크롬(Chromium)으로 불투명 패턴을 형성해 노광 영역을 정의합니다.",
   },
   {
     id: 4,
@@ -28,12 +34,16 @@ export const Questions = [
     Question:
       "포토리소그래피 공정에서 스테퍼(Stepper)는 마스크와 웨이퍼를 나노미터 단위로 정밀하게 맞추기 위해 사용된다.",
     correct: "O",
+    explanation:
+      "스테퍼는 정밀 정렬과 축소 투영으로 마스크와 웨이퍼를 나노미터 수준으로 맞춰 오버레이 오차를 줄입니다.",
   },
   {
     id: 5,
     type: "OX",
     Question: "EDS 공정은 웨이퍼를 절단하는 과정이다.",
     correct: "X",
+    explanation:
+      "EDS는 전기적 동작 검사로 불량 다이를 선별하는 단계이고, 절단은 다이싱 공정에서 수행됩니다.",
   },
 ];
 export const SubjectiveQs = [
@@ -48,6 +58,8 @@ export const SubjectiveQs = [
       " ④ 절단 시간을 줄이기 위해",
     ],
     correctIndex: 2,
+    explanation:
+      "평탄화는 표면 높낮이를 줄여 포토·증착·에칭 시 회로 패턴이 균일하게 형성되도록 하는 목적입니다.",
   },
   {
     id: 2,
@@ -62,6 +74,8 @@ export const SubjectiveQs = [
       " ④ RF 파워 – Pa",
     ],
     correctIndex: 2,
+    explanation:
+      "공정 압력의 일반 단위는 mTorr이며, RF 파워는 W, 가스 유량은 sccm으로 구분해 사용합니다.",
   },
   {
     id: 3,
@@ -76,6 +90,8 @@ export const SubjectiveQs = [
       " ④ 불순물이 주입된다",
     ],
     correctIndex: 1,
+    explanation:
+      "PR은 빛을 받으면 화학적 성질이 변해(감광) 현상 과정에서 노광/비노광 영역의 용해도가 달라집니다.",
   },
   {
     id: 4,
@@ -88,6 +104,8 @@ export const SubjectiveQs = [
       " ④ 금속 배선을 형성하는 과정이다.",
     ],
     correctIndex: 1,
+    explanation:
+      "에칭은 PR로 보호되지 않은 영역만 선택적으로 제거해 원하는 미세 패턴을 깎아내는 공정입니다.",
   },
   {
     id: 5,
@@ -100,6 +118,8 @@ export const SubjectiveQs = [
       " ④ 몰딩 과정에서는 질소 가스를 흘려 칩을 보호한다.",
     ],
     correctIndex: 2,
+    explanation:
+      "패키징의 와이어 본딩은 칩 패드와 기판 단자를 금속선으로 전기적으로 연결하는 단계입니다.",
   },
 ];
 export const CombinedQuestions = [...Questions, ...SubjectiveQs].map(
