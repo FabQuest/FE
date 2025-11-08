@@ -24,7 +24,7 @@ export const getUserQuizScores = async () => {
 //퀴즈갱신
 export const postQuizScore = async (quizCount) => {
   try {
-    const res = await instance.post(`/quiz/count/${quizCount}`);
+    const res = await instance.post(`/quiz/correct/${quizCount}`);
     console.log("postQuizScore:", res);
     return res.data;
   } catch (err) {
