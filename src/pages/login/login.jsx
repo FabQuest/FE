@@ -5,8 +5,13 @@ import FabQuest from "@assets/images/FabQuest.png";
 import KakaoImg from "@assets/images/KakaoTalk.png";
 import { LoginNickname } from "@components/login/LoginNickname";
 import { LoginBtn } from "@components/btn/LoginBtn";
-const API_BASE = "https://fabquest.oss-project-six.shop";
-const FE_CALLBACK = "https://fabquest-fe.vercel.app/home";
+
+const API_BASE =
+  import.meta.env.VITE_BASE_URL ??
+  (window.location.hostname === "localhost"
+    ? "http://localhost:8080"
+    : "https://fabquest.oss-project-six.shop");
+
 export const LoginPage = () => {
   const [Login, setLogin] = useState(false);
   const kakaoLoginUrl = `${API_BASE}/oauth2/authorization/kakao`;

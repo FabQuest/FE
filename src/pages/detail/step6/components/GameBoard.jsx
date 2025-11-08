@@ -1,50 +1,26 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as S from "../styled";
 import { TARGETS } from "../constants/constants";
 import { BoardSlot } from "./DndPieces";
 import wiring from "../assets/wiring.png";
 
-const GameBoard = ({ placements }) => {
-  const outerRef = useRef(null);
-  const [natW, setNatW] = useState(1);
-  const [natH, setNatH] = useState(1);
-  const [scale, setScale] = useState(1);
+const GameBoard = ({ placements, trayHeights }) => {
+  const [natW, setNatW] = useState(0);
+  const [natH, setNatH] = useState(0);
 
   const onWiringLoad = (e) => {
     const img = e.currentTarget;
-    setNatW(img.naturalWidth || 1);
-    setNatH(img.naturalHeight || 1);
-    requestAnimationFrame(updateScale);
+    setNatW(img.naturalWidth || 0);
+    setNatH(img.naturalHeight || 0);
   };
-
-  const updateScale = () => {
-    const el = outerRef.current;
-    if (!el || !natW) return;
-    const s = el.clientWidth / natW;
-    setScale(s > 0 ? s : 1);
-  };
-
-  useEffect(() => {
-    updateScale();
-    const ro = new ResizeObserver(updateScale);
-    if (outerRef.current) ro.observe(outerRef.current);
-    window.addEventListener("resize", updateScale);
-    window.addEventListener("orientationchange", updateScale);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", updateScale);
-      window.removeEventListener("orientationchange", updateScale);
-    };
-  }, [natW]);
 
   return (
-    <S.Stage ref={outerRef}>
+    <S.Stage>
       <div
         className="board"
         style={{
-          width: `${natW}px`,
-          height: `${natH}px`,
-          transform: `scale(${scale})`,
+          aspectRatio: natW && natH ? `${natW} / ${natH}` : "1 / 1",
+          width: "100%",
         }}
       >
         <img
@@ -55,11 +31,14 @@ const GameBoard = ({ placements }) => {
           draggable={false}
         />
 
-        {TARGETS.map((t) => (
+        {natW > 0 && natH > 0 && TARGETS.map((t) => (
           <BoardSlot
             key={t.id}
             id={t.id}
-            style={{ left: `${t.x}px`, top: `${t.y}px` }}
+            style={{
+              left: `${(t.x / natW) * 100}%`,
+              top: `${(t.y / natH) * 100}%`,
+            }}
           >
             {placements[t.id] ? null : (
               <img
@@ -67,6 +46,7 @@ const GameBoard = ({ placements }) => {
                 alt={t.id}
                 className="piece"
                 draggable={false}
+                style={{ height: trayHeights[t.id] ? `${trayHeights[t.id]}px` : '36px' }}
               />
             )}
           </BoardSlot>
