@@ -115,16 +115,17 @@ export const TrainBtn = styled.div`
   border-radius: 8px;
   justify-content: center;
   align-items: center;
-  background: var(
-    --button---gradation2,
-    linear-gradient(94deg, #2fceff -1.45%, #803bff 45.47%, #7073ff 85.68%)
-  );
+  background: ${({ $tone }) =>
+    $tone
+      ? "var(--button---gradation2, linear-gradient(94deg, #2fceff -1.45%, #803bff 45.47%, #7073ff 85.68%))"
+      : "#9E9E9E"};
 
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
   ${({ theme }) => theme.fonts.InterB3};
   color: ${({ theme }) => theme.colors.white};
   border: 1px solid
     ${({ $isMy, theme }) => ($isMy ? theme.colors.mint100 : "none")};
+
   cursor: pointer;
 `;
 //progressStep

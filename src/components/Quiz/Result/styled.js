@@ -75,7 +75,11 @@ export const ResultWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   overflow-y: auto;
-  padding-top: 8rem;
+  @media (max-height: 680px) {
+    padding-top: 8rem;
+  }
+  padding-top: 1rem;
+
   gap: 5px;
 `;
 export const AnswerBox = styled.div`

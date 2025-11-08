@@ -1,12 +1,15 @@
 import * as S from "./styled";
 import { useState } from "react";
-import LoginLogo from "@assets/images/LoginLogo.png";
+import LoginLogo from "@assets/images/LoginCharacter.png";
 import FabQuest from "@assets/images/FabQuest.png";
 import KakaoImg from "@assets/images/KakaoTalk.png";
 import { LoginNickname } from "@components/login/LoginNickname";
 import { LoginBtn } from "@components/btn/LoginBtn";
+const API_BASE = "https://fabquest.oss-project-six.shop";
+const FE_CALLBACK = "https://fabquest-fe.vercel.app/home";
 export const LoginPage = () => {
   const [Login, setLogin] = useState(false);
+  const kakaoLoginUrl = `${API_BASE}/oauth2/authorization/kakao`;
 
   return (
     <>
@@ -16,11 +19,11 @@ export const LoginPage = () => {
         ) : (
           <S.LogoWrapper>
             <S.TextWrapper>
-              <S.LogoImg src={LoginLogo} />
+              <S.CharacterImg src={LoginLogo} />
               <S.LogoImg src={FabQuest} />
               <S.LoginText>반도체 8대 공정 체험하기</S.LoginText>
             </S.TextWrapper>
-            <S.BtnContainer>
+            <S.BtnContainer href={kakaoLoginUrl}>
               <LoginBtn
                 onClick={() => setLogin(true)}
                 imgSrc={KakaoImg}

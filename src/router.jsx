@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import React from "react";
 import App from "./App";
-import { LoginPage } from "@pages/login/Login";
+import { LoginPage } from "@pages/login/login";
 import { HomePage } from "@pages/home/Home";
 import { TrainingPage } from "@pages/training/Training";
 import { MyPage } from "@pages/My/MyPage";
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
       {
         path: "/detail/step8",
         element: <Step8Page />,
-      }
+      },
     ],
   },
 ]);

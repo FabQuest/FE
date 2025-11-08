@@ -52,6 +52,12 @@ export const LogoImg = styled.img`
   align-items: center;
   justify-content: center;
 `;
+export const CharacterImg = styled.img`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 310px;
+`;
 
 export const TextWrapper = styled.div`
   display: flex;
@@ -65,7 +71,7 @@ export const LoginText = styled.div`
   ${({ theme }) => theme.fonts.InterM2};
   color: ${({ theme }) => theme.colors.purple100};
 `;
-export const BtnContainer = styled.div`
+export const BtnContainer = styled.a`
   display: flex;
   width: 316px;
 `;
