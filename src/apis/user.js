@@ -32,3 +32,14 @@ export const postQuizScore = async (quizCount) => {
     throw err;
   }
 };
+//stage 단계 증가 
+export const postStageUp = async (nextStageNumber) => {
+  try {
+    const res = await instance.post(`/stage/move/${nextStageNumber}`);
+    console.log(res);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
