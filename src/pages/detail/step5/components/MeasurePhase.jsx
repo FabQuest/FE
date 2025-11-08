@@ -7,6 +7,7 @@ const MeasurePhase = ({
   pos,
   handleStart,
   handleStop,
+  knobRef,
 }) => {
   const TARGET_MIN = 0.35;
   const TARGET_MAX = 0.65;
@@ -28,8 +29,8 @@ const MeasurePhase = ({
             }}
           />
           <div
+            ref={knobRef}
             className={`knob ${isRunning ? "running" : ""}`}
-            style={{ left: `${pos * 100}%` }}
           />
         </div>
         <p className="hint">

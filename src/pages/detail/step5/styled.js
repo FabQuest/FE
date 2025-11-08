@@ -1,9 +1,9 @@
 import styled, { keyframes, css } from "styled-components";
 
 const shake = keyframes`
-  0%,100% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  75% { transform: translateX(6px); }
+  0% { transform: translateX(0); }
+  50% { transform: translateX(12px); }
+  100% { transform: translateX(0); }
 `;
 
 const slideFadeDown = keyframes`
@@ -159,7 +159,6 @@ export const GaugeWrap = styled.div`
     border: 3px solid #5c6ef8;
     transform: translate(-50%, -50%);
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    transition: left 0.02s linear;
     pointer-events: none;
 
     &.running {

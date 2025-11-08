@@ -1,5 +1,4 @@
 import React from "react";
-import * as S from "./styled";
 import { useDepositionGame } from "./hooks/useDepositionGame";
 import MeasurePhase from "./components/MeasurePhase";
 import AnglePhase from "./components/AnglePhase";
@@ -9,6 +8,7 @@ import { STEP_CONTENT } from "@constants/stepContent";
 import StepCompletionModal from "@components/common/Modal/StepCompletionModal";
 
 const Step5Page = () => {
+
   const {
     phase,
     isRunning,
@@ -21,6 +21,7 @@ const Step5Page = () => {
     arrowsExit,
     showModal,
     pellicleRef,
+    knobRef,
     slotW,
     slotH,
     angle,
@@ -68,6 +69,7 @@ const Step5Page = () => {
           pos={pos}
           handleStart={handleStart}
           handleStop={handleStop}
+          knobRef={knobRef}
         />
       ) : (
         <AnglePhase

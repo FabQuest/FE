@@ -11,7 +11,7 @@ const Header = ({ title }) => {
       <S.BackButton
         src={BackButtonImage}
         alt="Back"
-        onClick={() => navigate(-1)}
+        onClick={() => navigate("/training")}
       />
       <S.Title>{title}</S.Title>
     </S.HeaderContainer>
