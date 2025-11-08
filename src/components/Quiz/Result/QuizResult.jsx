@@ -1,18 +1,31 @@
 import * as S from "./styled";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import BackIcon from "@assets/icon/backbutton.png";
 import HappyImg from "@assets/images/QuizResultHappyImg.png";
 import SadImg from "@assets/images/QuizResultSadImg.png";
 
 import { GradationBtn } from "@components/training/GradationBtn";
 import { postQuizScore } from "@apis/user";
+import { CombinedQuestions } from "@constants/Quiz";
 export const QuizResult = ({ results, onRetry }) => {
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
-  const list = Object.values(results);
+
+  const list = useMemo(() => {
+    return Object.entries(results)
+      .map(([k, r]) => {
+        const seq = Number(k);
+        const q = CombinedQuestions.find((q) => q.seq === seq);
+        return { seq, ...r, q };
+      })
+      .sort((a, b) => a.seq - b.seq);
+  }, [results]);
+
   console.log("결과:", results);
   const correct = list.filter((r) => r.isCorrect).length;
+  console.log("맞춘 갯수:", correct);
+
   const UserLevel =
     correct < 3
       ? ""
@@ -28,6 +41,7 @@ export const QuizResult = ({ results, onRetry }) => {
     try {
       setSubmitting(true);
       await postQuizScore(correct);
+      console.log("퀴즈갯수 post:", correct);
       navigate("/mypage");
     } catch (err) {
       console.log(err);
@@ -70,7 +84,28 @@ export const QuizResult = ({ results, onRetry }) => {
             key={r.seq ?? r.displayNo ?? i}
             $isCorrect={!!r.isCorrect}
           >
-            {String(r.selected)}/{String(r.correct)}/{r.explanation ?? ""}
+            <S.AnswerQText>
+              {r.seq}. {r.q?.Question ?? "(질문 없음)"}
+            </S.AnswerQText>
+            {r.type === "OX" ? (
+              <>
+                <S.AnswerText $isCorrect={!!r.isCorrect}>
+                  답:{String(r.correct)}{" "}
+                </S.AnswerText>
+                <S.AnswerExplanation $isCorrect={!!r.isCorrect}>
+                  {r.explanation ?? ""}{" "}
+                </S.AnswerExplanation>
+              </>
+            ) : (
+              <>
+                <S.AnswerText $isCorrect={!!r.isCorrect}>
+                  답:{String(r.correct)}번{" "}
+                </S.AnswerText>
+                <S.AnswerExplanation $isCorrect={!!r.isCorrect}>
+                  {r.explanation ?? ""}{" "}
+                </S.AnswerExplanation>
+              </>
+            )}
           </S.AnswerBox>
         ))}
       </S.ResultWrapper>
