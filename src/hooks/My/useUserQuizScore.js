@@ -6,7 +6,7 @@ export const useUserQuizScore = () => {
   const fetchUserInfo = async () => {
     try {
       const res = await getUserQuizScores();
-      console.log("res:", res);
+      console.log("마이페이지 퀴즈 갯수 get res:", res);
       setQuizScore(res);
     } catch (err) {
       console.log(err);

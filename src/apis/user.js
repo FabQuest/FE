@@ -24,15 +24,15 @@ export const getUserQuizScores = async () => {
 //퀴즈갱신
 export const postQuizScore = async (quizCount) => {
   try {
-    const res = await instance.post(`/correct/${quizCount}`);
-    console.log(res);
+    const res = await instance.post(`/quiz/count/${quizCount}`);
+    console.log("postQuizScore:", res);
     return res.data;
   } catch (err) {
     console.log(err);
     throw err;
   }
 };
-//stage 단계 증가 
+//stage 단계 증가
 export const postStageUp = async (nextStageNumber) => {
   try {
     const res = await instance.post(`/stage/move/${nextStageNumber}`);

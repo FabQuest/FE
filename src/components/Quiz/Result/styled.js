@@ -73,26 +73,22 @@ export const ResultWrapper = styled.div`
   width: 335px;
   margin-top: 1rem;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
   overflow-y: auto;
-  @media (max-height: 680px) {
-    padding-top: 8rem;
-  }
-  padding-top: 1rem;
 
   gap: 5px;
 `;
 export const AnswerBox = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
-  min-height: 30px;
+  min-height: 120px;
   box-sizing: border-box;
   padding: 20px;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
+  justify-content: center;
+  align-items: start;
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0 0 4px 0 rgba(67, 56, 202, 0.25);
   border: 1px solid
     ${({ $isCorrect, theme }) =>
@@ -100,6 +96,23 @@ export const AnswerBox = styled.div`
 
   background-color: ${({ $isCorrect, theme }) =>
     $isCorrect ? theme.colors.purple01 : theme.colors.red01};
+`;
+
+export const AnswerQText = styled.div`
+  display: flex;
+  ${({ theme }) => theme.fonts.InterM3};
+`;
+export const AnswerText = styled.div`
+  display: flex;
+  ${({ theme }) => theme.fonts.InterR1};
+  color: ${({ $isCorrect, theme }) =>
+    $isCorrect ? theme.colors.blue100 : theme.colors.red03};
+`;
+export const AnswerExplanation = styled.div`
+  display: flex;
+  ${({ theme }) => theme.fonts.InterR2};
+  color: ${({ $isCorrect, theme }) =>
+    $isCorrect ? theme.colors.blue100 : theme.colors.red03};
 `;
 export const BtnWrapper = styled.div`
   display: flex;

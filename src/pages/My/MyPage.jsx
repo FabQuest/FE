@@ -17,10 +17,9 @@ import Cookies from "js-cookie";
 export const MyPage = () => {
   const { QuizScore } = useUserQuizScore();
   const { UserData } = useHomeUserInfo();
-  console.log("마이페이지:", QuizScore);
   const score = QuizScore?.quizCorrectCount;
   const Trainingstep = UserData?.stageNumber;
-
+  console.log("마이페이지 퀴즈 score:", score);
   const nick = Cookies.get("nickname");
   const [isOpenPrize, setIsOpenPrize] = useState(false);
   const UserLevel =
@@ -57,7 +56,7 @@ export const MyPage = () => {
           <S.BadgeContainer>
             <S.BadgeTextBox>
               <S.BadgeText>획득한 뱃지</S.BadgeText>
-              <S.BadgeScore>{Trainingstep === 8 ? score : "0"}/10</S.BadgeScore>
+              <S.BadgeScore>{score}/10</S.BadgeScore>
             </S.BadgeTextBox>
             <S.BadgeImg
               src={
