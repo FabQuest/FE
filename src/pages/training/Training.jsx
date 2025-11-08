@@ -1,5 +1,5 @@
 import * as S from "./styled";
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Footer } from "@components/footer/Footer";
 import { STEPS } from "@constants/Step";
 import { EXPLAINS } from "@constants/Step";
@@ -13,15 +13,24 @@ export const TrainingPage = () => {
   const Trainingstep = UserData?.stageNumber;
 
   const [selectedStep, setSelectedStep] = useState({
-    id: Trainingstep,
+    id: null,
     nonce: 0,
   });
+
+  useEffect(() => {
+    if (Trainingstep != null) {
+      setSelectedStep({ id: Trainingstep, nonce: 0 });
+    }
+  }, [Trainingstep]);
+
   const currentPos = useMemo(
     () => STEPS.find((s) => s.id === Trainingstep) ?? STEPS[0],
     [Trainingstep]
   );
   const currentExplain = useMemo(
-    () => EXPLAINS.find((s) => s.step === selectedStep.id) ?? EXPLAINS[0],
+    () =>
+      EXPLAINS.find((s) => s.step === (selectedStep.id ?? EXPLAINS[0].step)) ??
+      EXPLAINS[0],
     [selectedStep.id, selectedStep.nonce]
   );
 
