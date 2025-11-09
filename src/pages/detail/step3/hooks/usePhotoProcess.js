@@ -1,19 +1,26 @@
+// usePhotoProcess.ts
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useStepStore from "@stores/stepStore";
 
 export const usePhotoProcess = () => {
   const navigate = useNavigate();
+
+  const currentSubStep = useStepStore((state) => state.step3.currentSubStep);
+  const setStep3CurrentSubStep = useStepStore(
+    (state) => state.setStep3CurrentSubStep
+  );
+
   const [selected, setSelected] = useState(null);
-  const [currentSubStep, setCurrentSubStep] = useState(1);
   const [allLightsOnInStep2, setAllLightsOnInStep2] = useState(false);
   const [isStep3Completed, setIsStep3Completed] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   const handleNext = () => {
     if (currentSubStep === 1) {
-      setCurrentSubStep(2);
+      setStep3CurrentSubStep(2);
     } else if (currentSubStep === 2) {
-      setCurrentSubStep(3);
+      setStep3CurrentSubStep(3);
     } else if (currentSubStep === 3) {
       setShowModal(true);
     } else {
@@ -31,6 +38,7 @@ export const usePhotoProcess = () => {
 
   const handleModalClose = () => {
     setShowModal(false);
+    setStep3CurrentSubStep(1);
   };
 
   return {

@@ -6,11 +6,11 @@
       "@components/*": ["src/components/*"],
       "@constants/*": ["src/constants/*"],
       "@hooks/*": ["src/hooks/*"],
-      "@stores/*": ["src/stores/*"],
       "@layout/*": ["src/layout/*"],
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@stores/*": ["src/stores/*"]
     }
   },
   "exclude": ["node_modules", "dist"]
