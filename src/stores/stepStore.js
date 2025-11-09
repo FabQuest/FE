@@ -13,8 +13,10 @@ const useStepStore = create(
 
       step3: {
         currentSubStep: 1,
+        selectedMask: null,
       },
       setStep3CurrentSubStep: (currentSubStep) => set((state) => ({ step3: { ...state.step3, currentSubStep } })),
+      setStep3SelectedMask: (selectedMask) => set((state) => ({ step3: { ...state.step3, selectedMask } })),
 
       step5: {
         currentSubStep: 1,
@@ -29,14 +31,14 @@ const useStepStore = create(
       resetAllSteps: () =>
         set({
           step1: { currentStep: 0, openComplete: false },
-          step3: { currentSubStep: 1 },
+          step3: { currentSubStep: 1, selectedMask: null },
           step5: { currentSubStep: 1 },
           step8: { currentSubStep: 1 },
         }),
     }),
     {
-      name: 'step-progress-storage', 
-      storage: localStorage, 
+      name: 'step-progress-storage',
+      storage: localStorage,
     },
   ),
 );
