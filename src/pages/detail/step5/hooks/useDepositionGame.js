@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import useStepStore from "@stores/stepStore";
 
 const TARGET_MIN = 0.35;
 const TARGET_MAX = 0.65;
-const SPEED = 1;          
+const SPEED = 1;
 const PELLICLE_ANIM_MS = 900;
 const ARROW_EXIT_MS = 800;
 
@@ -10,7 +11,13 @@ const sliderToAngle = (t01) => 45 - 90 * t01;
 const angleToSlider = (deg) => (45 - deg) / 90;
 
 export const useDepositionGame = () => {
-  const [phase, setPhase] = useState("measure");
+  const currentSubStep = useStepStore((state) => state.step5.currentSubStep);
+  const setStep5CurrentSubStep = useStepStore(
+    (state) => state.setStep5CurrentSubStep,
+  );
+
+  const phase = currentSubStep === 1 ? "measure" : "angle";
+
   const [isRunning, setIsRunning] = useState(false);
 
   const posRef = useRef(0);
@@ -28,13 +35,21 @@ export const useDepositionGame = () => {
   const [showModal, setShowModal] = useState(false);
 
   const pellicleRef = useRef(null);
-  const knobRef = useRef(null); 
+  const knobRef = useRef(null);
   const [slotW, setSlotW] = useState(null);
   const [slotH, setSlotH] = useState(null);
 
   const rafRef = useRef(null);
   const lastTsRef = useRef(null);
-  const lastUiTsRef = useRef(0); 
+  const lastUiTsRef = useRef(0);
+
+  useEffect(() => {
+    if (phase === "angle") {
+      setPellicleGone(true);
+      setArrowsEnter(true);
+      setSuccess(true);
+    }
+  }, [phase]);
 
   useEffect(() => {
     if (!pellicleRef.current || pellicleGone) return;
@@ -67,15 +82,15 @@ export const useDepositionGame = () => {
       const dt = (ts - lastTsRef.current) / 1000;
       lastTsRef.current = ts;
 
-      let pos = posRef.current + dirRef.current * SPEED * dt;
-      if (pos >= 1) {
-        pos = 1 - (pos - 1);
+      let p = posRef.current + dirRef.current * SPEED * dt;
+      if (p >= 1) {
+        p = 1 - (p - 1);
         dirRef.current = -1;
-      } else if (pos <= 0) {
-        pos = -pos;
+      } else if (p <= 0) {
+        p = -p;
         dirRef.current = 1;
       }
-      posRef.current = Math.max(0, Math.min(1, pos));
+      posRef.current = Math.max(0, Math.min(1, p));
 
       if (knobRef.current) {
         knobRef.current.style.left = `${posRef.current * 100}%`;
@@ -111,14 +126,14 @@ export const useDepositionGame = () => {
     setIsRunning(false);
     lastTsRef.current = null;
 
-    const p = posRef.current; 
+    const p = posRef.current;
     if (p >= TARGET_MIN && p <= TARGET_MAX) {
       setPellicleExiting(true);
       setTimeout(() => {
         setPellicleGone(true);
         setSuccess(true);
         setArrowsEnter(true);
-        setPhase("angle");
+        setStep5CurrentSubStep(2);
       }, PELLICLE_ANIM_MS);
     } else {
       setFailed(true);
@@ -129,16 +144,18 @@ export const useDepositionGame = () => {
         if (knobRef.current) {
           knobRef.current.style.left = `0%`;
         }
-        setPos(0); 
+        setPos(0);
       }, 600);
     }
-  }, []);
+  }, [setStep5CurrentSubStep]);
 
   const [angle, setAngle] = useState(15);
+
   const handleAngleChange = useCallback((e) => {
     const t = Number(e.target.value) / 100;
     setAngle(sliderToAngle(t));
   }, []);
+
   const sliderValue = Math.round(angleToSlider(angle) * 100);
 
   const fire = useCallback(() => {
@@ -148,12 +165,15 @@ export const useDepositionGame = () => {
     }, ARROW_EXIT_MS);
   }, []);
 
-  const handleModalClose = useCallback(() => setShowModal(false), []);
+  const handleModalClose = useCallback(() => {
+    setShowModal(false);
+    setStep5CurrentSubStep(1);
+  }, [setStep5CurrentSubStep]);
 
   return {
     phase,
     isRunning,
-    pos,        
+    pos,
     failed,
     success,
     pellicleExiting,
