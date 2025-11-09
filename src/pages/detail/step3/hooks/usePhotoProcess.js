@@ -8,10 +8,13 @@ export const usePhotoProcess = () => {
 
   const currentSubStep = useStepStore((state) => state.step3.currentSubStep);
   const setStep3CurrentSubStep = useStepStore(
-    (state) => state.setStep3CurrentSubStep
+    (state) => state.setStep3CurrentSubStep,
+  );
+  const selectedMask = useStepStore((state) => state.step3.selectedMask);
+  const setStep3SelectedMask = useStepStore(
+    (state) => state.setStep3SelectedMask,
   );
 
-  const [selected, setSelected] = useState(null);
   const [allLightsOnInStep2, setAllLightsOnInStep2] = useState(false);
   const [isStep3Completed, setIsStep3Completed] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -39,11 +42,12 @@ export const usePhotoProcess = () => {
   const handleModalClose = () => {
     setShowModal(false);
     setStep3CurrentSubStep(1);
+    setStep3SelectedMask(null);
   };
 
   return {
-    selected,
-    setSelected,
+    selected: selectedMask,
+    setSelected: setStep3SelectedMask,
     currentSubStep,
     allLightsOnInStep2,
     isStep3Completed,
