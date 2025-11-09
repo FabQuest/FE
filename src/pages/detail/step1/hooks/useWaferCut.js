@@ -1,28 +1,38 @@
 import { useMemo, useState, useEffect } from "react";
 import { tracks } from "../constants";
+import useStepStore from "@stores/stepStore"; // Import the store
 
 export const useWaferCut = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [isCutting, setIsCutting] = useState(false);
-  const [openComplete, setOpenComplete] = useState(false);
+  // Use Zustand for currentStep and openComplete
+  const { step1, setStep1CurrentStep, setStep1OpenComplete } = useStepStore();
+
+  const currentStep = step1.currentStep;
+  const openComplete = step1.openComplete;
+
+  const [isCutting, setIsCutting] = useState(false); // isCutting remains local
 
   const progressImage = useMemo(
     () => tracks[Math.min(currentStep, 3)],
-    [currentStep]
+    [currentStep],
   );
 
   useEffect(() => {
-    if (currentStep === 3) setOpenComplete(true);
-  }, [currentStep]);
+    if (currentStep === 3) setStep1OpenComplete(true);
+  }, [currentStep, setStep1OpenComplete]); // Add setStep1OpenComplete to dependencies
 
   const onClickLine = (idx) => {
     if (idx !== currentStep || isCutting) return;
     setIsCutting(true);
     const CUT_DURATION = 700;
     window.setTimeout(() => {
-      setCurrentStep((s) => Math.min(s + 1, 3));
+      setStep1CurrentStep(Math.min(currentStep + 1, 3)); // Update via Zustand action
       setIsCutting(false);
     }, CUT_DURATION);
+  };
+
+  const handleCloseModal = () => {
+    setStep1OpenComplete(false);
+    setStep1CurrentStep(0);
   };
 
   return {
@@ -30,7 +40,7 @@ export const useWaferCut = () => {
     isCutting,
     openComplete,
     progressImage,
-    setOpenComplete,
+    handleCloseModal, // Return the new handler
     onClickLine,
   };
 };

@@ -13,7 +13,7 @@ export const Step1Page = () => {
     isCutting,
     openComplete,
     progressImage,
-    setOpenComplete,
+    handleCloseModal,
     onClickLine,
   } = useWaferCut();
 
@@ -21,7 +21,7 @@ export const Step1Page = () => {
 
   const modalProps = {
     open: openComplete,
-    onClose: () => setOpenComplete(false),
+    onClose: handleCloseModal,
     stepNumber: 1,
     modalContent: content.modal,
   };
